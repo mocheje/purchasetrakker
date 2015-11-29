@@ -38,7 +38,7 @@ ActiveAdmin.register Item do
     f.input :description
     f.input :unit_of_measurement
     f.input :unit_price
-    f.input :plant, :label => "Plant", :as => :select, :collection => Plant.all
+    f.input :station, :label => "Station", :as => :select, :collection => Station.all
     f.input :currency, :as => :select, :collection => ["NGN", "USD", "GBP","EUR"]
       f.input :photo, :as => :file, :hint => f.object.photo.nil? ? f.template.content_t(:span, "no photo yet"): f.template.image_tag(f.object.photo.url(:medium))
 

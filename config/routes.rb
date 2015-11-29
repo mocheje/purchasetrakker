@@ -2,7 +2,7 @@ PurchaseTrakker::Application.routes.draw do
   resources :departments
 
 
-  resources :plants
+  resources :stations
 
 
   devise_for :users

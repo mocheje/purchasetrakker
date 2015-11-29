@@ -40,7 +40,7 @@ ActiveAdmin.register Request do
   index do
     selectable_column
     column :Requester do |request|
-      link_to(image_tag(request.user.photo.url(:thumb)), admin_user_path(request.user))
+      link_to(image_tag(request.user.photo.url(:thumb)), admin_user_path(request.user)) if request.user
     end
     column :title do |request|
       link_to(request.title, admin_request_path(request))
