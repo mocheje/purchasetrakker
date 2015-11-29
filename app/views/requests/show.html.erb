@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <h2>REQUEST <strong>#<%= @request.id %></strong></h2>
+    </div>
+
+    <% unless ( @request.approved? or @request.rejected? ) %>
+        <%= link_to 'Edit', edit_request_path(@request), :class => "btn btn-primary pull-right", :style => "margin-left: 5px;" %>
+    <% end %>
+    <%= link_to 'Back', requests_path, class: "btn btn-primary pull-right" %>
+  </div>
+</div>
+
+<div class="panel-body">
+  <div class="push-down-10 pull-right">
+    <button class="btn btn-default"><span class="fa fa-print"></span> Print</button>
+  </div>
+  <!-- INVOICE -->
+  <div class="invoice">
+
+    <div class="row">
+      <div class="col-md-4">
+
+        <div class="invoice-address">
+          <h5>From</h5>
+          <h6><%= @request.user.department.name + "-" +@request.user.department.station%></h6>
+          <p><%= @request.user.first_name.capitalize + " " + @request.user.last_name.capitalize %></p>
+          <p><%= @request.request_type %></p>
+          <p><%= @request.reason.truncate(30) %></p>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <div class="invoice-address">
+          <h5>Status</h5>
+          <h6><span class="<% if @request.status == "Open" %> label label-default <% elsif @request.status == "Approved" %> label label-success <% else %> label label-danger <% end  %>"><%= @request.status %></span></h6>
+          <p>Approval Date</p>
+          <p><% if (@request.approved? || @request.rejected?) %> <%= @request.date_approved %> <% else %> (Yet to be approved) <% end %> </p>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <div class="invoice-address">
+          <h5>Cost</h5>
+          <table class="table table-striped">
+            <tbody><tr>
+              <td width="200">Requested Total:</td><td class="text-right">NGN <%= @request.total_amount%></td>
+            </tr>
+            <tr>
+              <td>Calculated Total :</td><td class="text-right"> NGN <%= @cal_total %></td>
+            </tr>
+            <tr>
+              <td><strong>Variance:</strong></td><td class="text-right"><strong><span style="font-size: large" ><b> NGN <%= (@cal_total - @request.total_amount).abs %></b></span></strong></td>
+            </tr>
+            </tbody></table>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="table-invoice">
+      <table class="table">
+        <tbody>
+        <tr>
+          <th>Item Photo</th>
+          <th>Item Name</th>
+          <th class="text-center">Unit Price</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Total</th>
+        </tr>
+
+        <% @request_items.each do |item| %>
+            <tr>
+              <td><%= image_tag item.item.photo.url(:thumb) %></td>
+              <td>
+                <strong><%= item.item.name %></strong>
+                <p><%= item.item.description %></p>
+              </td>
+              <td class="text-center"><%= item.amount %></td>
+              <td class="text-center"><%= item.quantity %></td>
+              <td class="text-center"><%= item.currency %><%= item.amount * item.quantity %></td>
+            </tr>
+        <% end %>
+        </tr>
+        </tbody></table>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+
+      </div>
+      <div class="col-md-6">
+        <h4>Amount Due</h4>
+
+        <table class="table table-striped">
+          <tbody><tr>
+            <td width="200"><strong>Requested Total:</strong></td><td class="text-right"><%= @request.total_amount %></td>
+          </tr>
+          <tr>
+            <td><strong>Tax (VAT %):</strong></td><td class="text-right">0.00</td>
+          </tr>
+          <tr>
+            <td><strong>Discount (%):</strong></td><td class="text-right">0.00</td>
+          </tr>
+          <tr class="total">
+            <td>Total Amount:</td><td class="text-right"><%= @request.total_amount %></td>
+          </tr>
+          </tbody></table>
+      </div>
+    </div>
+
+  </div>
+  <!-- END INVOICE -->
+
+</div>

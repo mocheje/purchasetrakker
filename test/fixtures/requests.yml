@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  total_amount: 1
+  department: MyString
+  type: 
+  reason: MyText
+
+two:
+  user_id: 1
+  total_amount: 1
+  department: MyString
+  type: 
+  reason: MyText

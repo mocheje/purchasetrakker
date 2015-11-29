@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  item_id: 1
+  department: MyString
+  approved: 2015-11-18 15:45:31
+  requester: 1
+
+two:
+  item_id: 1
+  department: MyString
+  approved: 2015-11-18 15:45:31
+  requester: 1

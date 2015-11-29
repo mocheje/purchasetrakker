@@ -1,0 +1,80 @@
+<div class="col-md-3">
+
+  <div class="widget widget-warning widget-item-icon">
+    <div class="widget-item-right">
+      <span class="fa fa-envelope"></span>
+    </div>
+    <div class="widget-data-left">
+      <div class="widget-int num-count">48</div>
+      <div class="widget-title">New messages</div>
+      <div class="widget-subtitle">In your mailbox</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="col-md-3">
+  <div class="list-group border-bottom push-down-20">
+    <a href="#" class="list-group-item active">Request / Activity Breakdown <span class="badge badge-primary"><%= @approved + @rejected + @open %></span></a>
+    <a href="#" class="list-group-item">Total Approved <span class="badge badge-success"><%= @approved %></span></a>
+    <a href="#" class="list-group-item">Total Rejected<span class="badge badge-danger"><%= @rejected %></span></a>
+    <a href="#" class="list-group-item">Total Open <span class="badge badge-default"><%= @open %></span></a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="panel-title">Most Recent Requests</h3>
+      </div>
+
+      <div class="panel-body panel-body-table">
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-actions">
+            <thead>
+            <tr>
+              <th width="50">id</th>
+              <th>Title</th>
+              <th width="100">Status</th>
+              <th width="100">Amount</th>
+              <th width="100">Date</th>
+              <th width="120">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @requests.each do |request| %>
+                <tr id="<%= "trow_" + request.id.to_s %>">
+                  <td class="text-center"><%= request.id %></td>
+                  <td><strong><%= request.title %></strong></td>
+                  <td><span class="<% if request.status == "Open"  %> label label-default <% elsif request.status == "Approved" %> label label-success <% else %> label label-danger <% end %>"><%= request.status %></span></td>
+                  <td><%= request.total_amount %></td>
+                  <td><% request.created_at %></td>
+                  <td>
+                    <a href="<%= request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-search"></span></a>
+                    <% unless ( request.approved? | request.rejected? ) %>
+                        <a href="<%= edit_request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-pencil"></span></a>
+                        <%= link_to "", request_path(request), method: "delete", class: "fa fa-times btn btn-danger btn-rounded btn-condensed btn-sm" %>
+                    <% end %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<br />
+<div class="row">
+  <div class="col-md-3">
+    <%= link_to 'New Request', new_request_path, :class => "btn btn-primary btn-lg" %>
+  </div>
+
+</div>
+

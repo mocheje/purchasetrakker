@@ -1,0 +1,27 @@
+<h1>Listing request_items</h1>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Request</th>
+    <th>Quantity</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @request_items.each do |request_item| %>
+  <tr>
+    <td><%= request_item.item_id %></td>
+    <td><%= request_item.request_id %></td>
+    <td><%= request_item.quantity %></td>
+    <td><%= link_to 'Show', request_item %></td>
+    <td><%= link_to 'Edit', edit_request_item_path(request_item) %></td>
+    <td><%= link_to 'Destroy', request_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Request item', new_request_item_path %>

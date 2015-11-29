@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  unit_of_measurement: MyString
+  unit_price: 1
+  currency: MyString
+
+two:
+  name: MyString
+  description: MyString
+  unit_of_measurement: MyString
+  unit_price: 1
+  currency: MyString
