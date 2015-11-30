@@ -9,6 +9,7 @@ class Request < ActiveRecord::Base
   scope :approved, where(:status => "Approved")
   scope :rejected, where(:status => "Rejected")
   scope :open, where(:status => "Open" )
+  validates :department, :total_amount, :request_type, :title, :presence => true
   def approved?
     return true if status == "Approved"
     return false
