@@ -30,7 +30,7 @@ ActiveAdmin.register User do
     column :email
     column :position
     column :department do |user|
-      link_to("#{user.department.name} - #{user.department.station}", admin_department_path(user.department))
+      link_to("#{user.department.name} - #{user.department.station}", admin_department_path(user.department)) if user.department
     end
     column :last_sign_in_at
     column :sign_in_count
