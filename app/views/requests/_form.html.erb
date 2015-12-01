@@ -29,7 +29,7 @@
 
             <div class="form-group">
               <div class="col-md-10">
-                <%= f.text_field :request_type, class: "form-control",  placeholder: "Enter Request Type" %>
+                <%= f.select :request_type, [['NEW', 'NEW'], ['Replacement', "Replacement"], ['Damaged', 'Damaged'], ['Others','Others']], class: "form-control",  placeholder: "Enter Request Type" %>
               </div>
             </div>
 

@@ -12,11 +12,4 @@ ActiveAdmin.register Purchase do
     f.buttons
   end
 
-  index do
-
-  end
-
-  show do
-
-  end
 end

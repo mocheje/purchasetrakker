@@ -5,7 +5,7 @@ class RequestsController < InheritedResources::Base
     @requests = current_user.requests.recent
     @approved = current_user.requests.approved.count
     @rejected = current_user.requests.rejected.count
-    @open = current_user.requests.open.count
+    @open = current_user.requests.openrequest.count
   end
 
   def show

@@ -1,15 +1,10 @@
 @import "frontend";
-@import "theme-default";
+@import "theme-forest-head-light";
 
-form > fieldset {
-  border: none;
-  border: solid 1px #CCC;
-  padding: 10px 15px;
-  margin: 15px 0;
-  fieldset {
-    border: none;
-    margin: 0;
-    margin: 10px 0;
-    padding: 0;
-  }
+
+//application layout specific styles
+
+.app_title {
+  font-family: "monotype-corsiva courier verdana ";
+  font-weight: bold;
 }

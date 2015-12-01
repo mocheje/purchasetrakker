@@ -1,0 +1,181 @@
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+  <div class="row">
+    <div class="col-md-3 col-sm-4 col-xs-5">
+
+      <form action="#" class="form-horizontal">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3><span class="fa fa-user"></span> <%= @profile.first_name + " " + @profile.last_name %></h3>
+            <p>
+              <%= @profile.department.name + " - " + @profile.department.station %>
+            </p>
+            <div class="text-center" id="user_image">
+              <%= image_tag @profile.photo.url(:medium), :class => "img-thumbnail" %>
+            </div>
+          </div>
+          <div class="panel-body form-group-separated">
+
+            <div class="form-group">
+              <div class="col-md-12 col-xs-12">
+                <a href="#" class="btn btn-primary btn-block btn-rounded" data-toggle="modal" data-target="#modal_change_photo">Change Photo</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">#ID</label>
+              <div class="col-md-9 col-xs-7">
+                <input type="text" value="<%= @profile.id %>" class="form-control" disabled/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">Login</label>
+              <div class="col-md-9 col-xs-7">
+                <input type="text" value="<%= @profile.email %>" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">E-mail</label>
+              <div class="col-md-9 col-xs-7">
+                <input type="text" value="<%= @profile.email %>" class="form-control" id="email"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12 col-xs-12">
+                <a href="#" class="btn btn-danger btn-block btn-rounded" data-toggle="modal" data-target="#modal_change_password">Change password</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="col-md-6 col-sm-8 col-xs-7">
+
+      <form action="#" class="form-horizontal">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3><span class="fa fa-pencil"></span> Profile</h3>
+            <p>
+              This contains staff basic profile information, more fields will be added accordingly.
+            </p>
+          </div>
+          <div class="panel-body form-group-separated">
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">First Name</label>
+              <div class="col-md-9 col-xs-7">
+                <input type="text" value="<%= @profile.first_name %>" class="form-control"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">Last Name</label>
+              <div class="col-md-9 col-xs-7">
+                <input type="text" value="<%= @profile.last_name %>" class="form-control"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">Phone Number</label>
+              <div class="col-md-9 col-xs-7">
+                <input type="text" value="<%= @profile.phonenumber %>" class="form-control" id="phonenumber"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">Location</label>
+              <div class="col-md-9 col-xs-7">
+                <input type="text" value="<%= @profile.address %>" class="form-control"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-5 control-label">About me</label>
+              <div class="col-md-9 col-xs-7">
+                <textarea class="form-control" rows="5"><%= @profile.bio %></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="panel panel-default form-horizontal">
+        <div class="panel-body">
+          <h3><span class="fa fa-info-circle"></span> Quick Info</h3>
+          <p>
+            Some quick info about this user
+          </p>
+        </div>
+        <div class="panel-body form-group-separated">
+          <div class="form-group">
+            <label class="col-md-4 col-xs-5 control-label">Last Logon</label>
+            <div class="col-md-8 col-xs-7 line-height-30">
+              <%= @profile.last_sign_in_at %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 col-xs-5 control-label">Active Since</label>
+            <div class="col-md-8 col-xs-7 line-height-30">
+              <%= @profile.created_at %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 col-xs-5 control-label">Groups</label>
+            <div class="col-md-8 col-xs-7">
+              administrators, managers, team-leaders, developers
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 col-xs-5 control-label">Birthday</label>
+            <div class="col-md-8 col-xs-7 line-height-30">
+              <%= @profile.date_of_birth %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3><span class="fa fa-cog"></span> Settings</h3>
+          <p>
+            Sample of settings block
+          </p>
+        </div>
+        <div class="panel-body form-horizontal form-group-separated">
+          <div class="form-group">
+            <label class="col-md-6 col-xs-6 control-label">Notifications</label>
+            <div class="col-md-6 col-xs-6">
+              <label class="switch">
+                <input type="checkbox" checked value="1"/>
+                <span></span> </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-6 col-xs-6 control-label">Mailing</label>
+            <div class="col-md-6 col-xs-6">
+              <label class="switch">
+                <input type="checkbox" checked value="1"/>
+                <span></span> </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-6 col-xs-6 control-label">Priority</label>
+            <div class="col-md-6 col-xs-6">
+              <label class="switch">
+                <input type="checkbox" value="0"/>
+                <span></span> </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- END PAGE CONTENT WRAPPER -->

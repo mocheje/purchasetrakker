@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
   columns do
     column do
       panel "Most Recent Open Request / Purchases" do
-        Request.recent.open.map do |request|
+        Request.recent.openrequest.map do |request|
           div :class => "recent_open" do
               span link_to(request.title, admin_request_path(request))
 
@@ -38,7 +38,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         div do
           br
-           b 'Dash board graph coming soon'
+            render 'admin/charts'
         end
       end
     end

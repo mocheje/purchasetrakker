@@ -1,64 +1,80 @@
-<div class="login-container">
-  <div class="login-box animated fadeInDown">
-    <div class="login-logo"></div>
-    <div class="login-body">
-      <div class="main2 alert-info">
-        <p id="notice"><%= notice %></p>
-        <p id="alert"><%= alert %></p>
-      </div>
-      <div class="login-title">
-        <strong>Welcome</strong>, Please login
-      </div>
 
-      <%= form_for resource, as: resource_name, :html => {:class => 'form-horizontal'}, url: session_path(resource_name) do |f| %>
 
-          <div class="form-group">
-            <div class="col-md-12">
-              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="login-container login-v2">
+
+      <div class="login-box animated fadeInDown">
+        <div class="login-body">
+          <div class="login-title"><strong>Welcome</strong>, Please login.</div>
+          <%= form_for resource, as: resource_name, :html => {:class => 'form-horizontal'}, url: session_path(resource_name) do |f| %>
+            <div class="form-group">
+              <div class="col-md-12">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <span class="fa fa-user"></span>
+                  </div>
+                  <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+                </div>
+              </div>
             </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <span class="fa fa-lock"></span>
+                  </div>
+                  <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <% if devise_mapping.rememberable? -%>
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me, class: ""  %>
+                <% end -%>
+              </div>
+              <div class="col-md-6 text-right">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <%= f.submit "Log in", class: "btn btn-primary btn-lg btn-block" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="login-footer">
+          <div class="pull-left">
+            &copy; 2015 InsightInventory
           </div>
-
-          <span style="margin: 5px;"></span>
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
-            </div>
+          <div class="pull-right">
+            <a href="#">About</a> | <a href="#">Privacy</a> | <a href="#">Contact Us</a>
           </div>
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <% if devise_mapping.rememberable? -%>
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me, class: "btn btn-link"  %>
-              <% end -%>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-6">
-              <%= render "devise/shared/links" %>
-            </div>
-            <div class="col-md-6">
-              <%= f.submit "Log in", class: "btn btn-info btn-block" %>
-            </div>
-          </div>
-
-      <% end %>
-
-    </div>
-
-    <div class="login-footer">
-      <div class="pull-left">
-        &copy; 2015 InsightInventory
+        </div>
       </div>
-      <div class="pull-right">
-        <a href="#">About</a> | <a href="#">Privacy</a> | <a href="#">Contact Us</a>
       </div>
-    </div>
   </div>
-
 </div>
 
 
+
+
+
+
+<div class="row">
+  <div class="login-container">
+    <div class="login-box animated fadeInDown">
+      <div class="login-logo"></div>
+
+    </div>
+
+  </div>
+
+</div>
 

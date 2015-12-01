@@ -1,6 +1,6 @@
 ActiveAdmin.register Request do
   menu :priority => 3
-  scope(:open){|request| request.open }
+  scope(:open){|request| request.openrequest  }
   scope :approved
   scope :rejected
   scope :all
@@ -148,6 +148,15 @@ ActiveAdmin.register Request do
   member_action :reject, :method => :post do
 
   end
+
+  collection_action :data, :method => :get do
+    respond_to do |format|
+      format.json {
+        render :json => [1,2,3,4,5]
+      }
+    end
+  end
+
   controller do
     def reject
       @request = Request.find(params[:id])

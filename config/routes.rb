@@ -1,4 +1,8 @@
 PurchaseTrakker::Application.routes.draw do
+  get "inbox/index"
+
+  get "profile/index"
+
   resources :departments
 
 
@@ -22,7 +26,6 @@ PurchaseTrakker::Application.routes.draw do
 
 
   resources :requests
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
