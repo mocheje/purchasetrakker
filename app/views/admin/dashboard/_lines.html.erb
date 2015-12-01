@@ -1,0 +1,37 @@
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        new Highcharts.Chart({
+            chart: {
+                renderTo: "requests_chart"
+            },
+            title: {
+                text: "Requests by day"
+            },
+            xAxis: {
+                type: "datetime"
+            },
+            yAxis: {
+                title: {
+                    text: "NGN"
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    return Highcharts.dateFormat("%B %e, %Y", this.x) + ': ' +
+                            "$" + Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            series: [
+                <% { "Approved" => Request.approved, "Rejected" => Request.rejected }.each do |name, requests| %>
+                {
+                    name: "<%= name %>",
+                    pointInterval: <%= 1.day * 1000 %>,
+                    pointStart: <%= 3.weeks.ago.to_i * 1000 %>,
+                    data: <%= requests_chart_series(requests, 3.weeks.ago) %>
+                },
+                <% end %>
+            ]
+        });
+    });
+</script>
+<div id="requests_chart" style="width:560px; height:300px;"></div>

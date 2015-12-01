@@ -145,6 +145,7 @@ ActiveAdmin.setup do |config|
   config.register_javascript 'd3.v3.min.js'
 
 
+
   # == CSV options
   #
   # Set the CSV builder separator (default is ",")

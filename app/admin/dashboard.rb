@@ -14,14 +14,13 @@ ActiveAdmin.register_page "Dashboard" do
 
   columns do
     column do
-      panel "Most Recent Open Request / Purchases" do
-        Request.recent.openrequest.map do |request|
-          div :class => "recent_open" do
-              span link_to(request.title, admin_request_path(request))
-
-          end
-        end
-      end
+       panel "Most Recent Open Request / Purchases" do
+         table_for Request.recent.openrequest.map do
+           column("Status")   {|request| status_tag(request.status)                                    }
+           column("Staff"){|request| link_to(request.user.first_name + " "  + request.user.last_name, admin_user_path(request.user)) }
+           column("Total")   {|request|  request.total_amount                       }
+         end
+       end
     end
 
     column do
@@ -37,7 +36,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         div do
-            render 'admin/charts'
+          render 'admin/dashboard/bar'
         end
       end
     end
