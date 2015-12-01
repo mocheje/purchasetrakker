@@ -37,7 +37,6 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         div do
-          br
             render 'admin/charts'
         end
       end

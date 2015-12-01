@@ -5,4 +5,4 @@ en:
   hello: "Hello world"
 
   active_admin:
-    powered_by: "Powered by InsightInventory"
+    powered_by: ""
