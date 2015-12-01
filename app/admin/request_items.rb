@@ -15,5 +15,9 @@ ActiveAdmin.register RequestItem do
     column :currency
     default_actions
   end
+
+  controller do
+    actions :all, :except => [:edit, :destroy]
+  end
   
 end

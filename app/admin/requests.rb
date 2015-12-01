@@ -158,6 +158,9 @@ ActiveAdmin.register Request do
   end
 
   controller do
+
+    actions :all, :except => [:edit, :destroy]
+
     def reject
       @request = Request.find(params[:id])
       if @request.reject

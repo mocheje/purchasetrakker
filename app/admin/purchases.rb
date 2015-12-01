@@ -11,5 +11,7 @@ ActiveAdmin.register Purchase do
     end
     f.buttons
   end
-
+  controller do
+    actions :all, :except => [:edit, :destroy]
+  end
 end

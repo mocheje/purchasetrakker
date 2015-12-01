@@ -6,4 +6,5 @@ class Purchase < ActiveRecord::Base
   scope :recent, order('id DESC')
 
   validates :quantity_received, numericality: true
+
 end

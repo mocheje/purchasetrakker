@@ -5,7 +5,7 @@ ActiveAdmin.register_page "Dashboard" do
   content :title => "Administrative Work List" do
     div :class => "blank_slate_container", :id => "dashboard_default_message" do
       span :class => "blank_slate" do
-        span "Welcome to InsightInventory administrator page. This is the default admin index page."
+        span "Welcome to Purchase Trakker administrator page. This is the default admin index page."
         small "click on the links above to navigate and perform other task"
       end
     end
