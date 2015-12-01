@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require requests
-//= require d3
+//= require d3.v3.min
 //= require_tree .
