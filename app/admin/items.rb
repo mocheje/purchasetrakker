@@ -46,5 +46,8 @@ ActiveAdmin.register Item do
     end
     f.buttons
   end
-  
+
+  controller do
+    actions :all, :except => [:edit]
+  end
 end
