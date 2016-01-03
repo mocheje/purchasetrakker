@@ -14,6 +14,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activeadmin (0.6.6)
       arbre (~> 1.0)
       bourbon (>= 1.0.0, < 4)
@@ -83,6 +85,8 @@ GEM
     jquery-rails (2.3.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.2)
+      railties (>= 3.1.0)
     json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -161,10 +165,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   activeadmin
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails (< 3.0.0)
+  jquery-ui-rails
   kaminari
   paperclip
   rails (= 3.2.15)

@@ -1,4 +1,5 @@
 ActiveAdmin.register Purchase do
+  menu :label => "Goods Receipt"
   @request_items = []
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "New Goods Receipt / Purchase", :multipart => true do

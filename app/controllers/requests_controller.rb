@@ -20,6 +20,7 @@ class RequestsController < InheritedResources::Base
   end
   def create
     @request = current_user.requests.new(params[:request])
+    params.inspect
     if @request.save
       redirect_to @request, notice: "Successfully sent Request."
     else
@@ -34,6 +35,13 @@ class RequestsController < InheritedResources::Base
       amount += (request.amount * request.quantity)
     end
     return amount
+  end
+
+  def copy
+    @source = Request.find(params[:id])
+    @request = @source.dup
+    @request.request_items = @source.request_items.each {|a| a.id = nil}
+    render 'new'
   end
 end
 

@@ -1,13 +1,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="col-md-4">
-      <h2>REQUEST <strong>#<%= @request.id %></strong></h2>
+      <h2>REQUEST <strong>#<%= @request.request_number.upcase if @request.request_number %></strong></h2>
     </div>
 
     <% unless ( @request.approved? or @request.rejected? ) %>
         <%= link_to 'Edit', edit_request_path(@request), :class => "btn btn-primary pull-right", :style => "margin-left: 5px;" %>
     <% end %>
-    <%= link_to 'Back', requests_path, class: "btn btn-primary pull-right" %>
+    <%= link_to 'Back to Home', requests_path, class: "btn btn-primary pull-right" %>
+    <%= link_to "copy", copy_request_path(@request), class: "btn btn-primary pull-right", style: 'float: left; margin-right: 5px;' %>
   </div>
 </div>
 
@@ -25,7 +26,6 @@
           <h5>From</h5>
           <h6><%= @request.user.department.name + "-" +@request.user.department.station%></h6>
           <p><%= @request.user.first_name.capitalize + " " + @request.user.last_name.capitalize %></p>
-          <p><%= @request.request_type %></p>
           <p><%= @request.reason.truncate(30) %></p>
         </div>
 
@@ -52,7 +52,7 @@
               <td>Calculated Total :</td><td class="text-right"> NGN <%= @cal_total %></td>
             </tr>
             <tr>
-              <td><strong>Variance:</strong></td><td class="text-right"><strong><span style="font-size: large" ><b> NGN <%= (@cal_total - @request.total_amount).abs %></b></span></strong></td>
+              <td><strong>Variance:</strong></td><td class="text-right"><strong><span style="font-size: large" ><b> NGN <%= (@cal_total - (@request.total_amount || 0)).abs %></b></span></strong></td>
             </tr>
             </tbody></table>
 

@@ -22,14 +22,22 @@ ActiveAdmin.register Request do
     f.inputs "Request Header", :multipart => true do
       f.input :user_id, :label => "Staff", :as => :select, :collection => User.all.map{|u| ["#{u.last_name} #{u.first_name}", u.id]}
       f.input   :title
-      f.input  :total_amount
+      f.input  :total_amount, :input_html => { :disabled => true }
       f.input  :department, :as => :select, :collection => Department.all.map{|u| ["#{u.name} - #{u.station}", u.id]}
-      f.input   :request_type, :as => :select, :collection => ["New", "Replacemeent", "Damaged", "others"]
       f.input     :reason
     end
     f.inputs "Request Items" do
       f.has_many :request_items, allow_destroy: true, new_record: true do |a|
-        a.input :item_id, :label => "Item", :as => :select, :collection => Item.all
+        a.input :item, :label => "Item", :as => :string, :input_html => {
+                         class: 'autocomplete',
+                         name: '',
+                         value: a.object.item.try(:name),
+                         data: {
+                             url: autocomplete_admin_items_path
+                         }
+                     }
+        a.input :item_id, as: :hidden
+        a.input   :request_type, :as => :select, :collection => ["New", "Replacemeent", "Damaged", "others"]
         a.input :quantity
         a.input :amount
         a.input :currency, :as => :select, :collection => ["NGN", "USD", "GBP","EUR"]
@@ -46,8 +54,9 @@ ActiveAdmin.register Request do
       link_to(request.title, admin_request_path(request))
     end
     column :total_amount
-    column :department
-    column :request_type
+    column("department") { |request|
+      link_to("#{request.user.department.name} - #{request.user.department.station}", admin_department_path(request.user.department)) if request.user.department
+    }
     column :reason
     column("status") {|request|
         if request.status == "Open"
@@ -76,8 +85,9 @@ ActiveAdmin.register Request do
       row :id
       row :title
       row :total_amount
-      row :department
-      row :request_type
+      row("department"){
+        link_to("#{request.user.department.name} - #{request.user.department.station}", admin_department_path(request.user.department)) if request.user.department
+      }
       row :reason
       row("status") {|request|
         if request.status == "Open"
@@ -96,9 +106,16 @@ ActiveAdmin.register Request do
           link_to(request_item.item.name, admin_item_path(request_item.item))
         end
         column :quantity
-        column :amount
-        column :currency
-        column :comment
+        column("Unit Price") { |item|
+          item.amount
+        }
+        column("Amount") { |item|
+          "#{item.currency } #{item.quantity * item.amount}"
+        }
+        column :request_type
+        column("comment"){|item|
+          truncate("#{item.comment}", length: 20)
+        }
       end
     end
 
@@ -163,7 +180,7 @@ ActiveAdmin.register Request do
 
     def reject
       @request = Request.find(params[:id])
-      if @request.reject
+      if @request.reject(params[:reason])
         redirect_to :back, alert: "Request Rejected"
       else
           redirect_to :back, alert: "Rejection not possible"

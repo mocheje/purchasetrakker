@@ -5,4 +5,5 @@ class Item < ActiveRecord::Base
   has_many :request_items
   belongs_to :station
   validates :currency, :name, :unit_of_measurement, :unit_price, :photo, :presence => true
+  validates :name, :uniqueness => true
 end

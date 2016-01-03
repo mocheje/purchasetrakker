@@ -25,7 +25,11 @@ PurchaseTrakker::Application.routes.draw do
   resources :request_items
 
 
-  resources :requests
+  resources :requests do
+    member do
+      get 'copy'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

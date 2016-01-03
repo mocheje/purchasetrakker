@@ -23,8 +23,9 @@ gem 'paperclip'
 gem "jquery-rails", "< 3.0.0"
 gem 'activeadmin'
 gem 'devise'
-
+gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'active_model_serializers'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

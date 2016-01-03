@@ -50,4 +50,9 @@ ActiveAdmin.register Item do
   controller do
     actions :all, :except => [:edit]
   end
+
+  collection_action :autocomplete, method: :get do
+    items = Item.where('LOWER(name) LIKE ?', "#{params[:term]}%")
+    render json: items, each_serializer: ItemAutocompleteSerializer, root: false
+  end
 end

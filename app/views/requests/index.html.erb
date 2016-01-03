@@ -61,6 +61,7 @@
                         <a href="<%= edit_request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-pencil"></span></a>
                         <%= link_to "", request_path(request), method: "delete", class: "fa fa-times btn btn-danger btn-rounded btn-condensed btn-sm" %>
                     <% end %>
+                    <a href="<%= copy_request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-copy"></span></a>
                   </td>
                 </tr>
             <% end %>

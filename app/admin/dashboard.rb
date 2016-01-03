@@ -18,6 +18,7 @@ ActiveAdmin.register_page "Dashboard" do
          table_for Request.recent.openrequest.map do
            column("Status")   {|request| status_tag(request.status)                                    }
            column("Staff"){|request| link_to(request.user.first_name + " "  + request.user.last_name, admin_user_path(request.user)) }
+           column("Request") {|request| link_to(request.title + " -" + request.user.department.name + "-" + request.user.department.station, admin_request_path(request))}
            column("Total")   {|request|  request.total_amount                       }
          end
        end

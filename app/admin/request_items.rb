@@ -1,5 +1,5 @@
 ActiveAdmin.register RequestItem do
-  menu :priority => 5
+  menu false
   index do
     column :photo do |request_item|
       link_to(image_tag(request_item.item.photo.url(:thumb)), admin_request_item_path(request_item.item))

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151130233941) do
+ActiveRecord::Schema.define(:version => 20160103015413) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -83,24 +83,26 @@ ActiveRecord::Schema.define(:version => 20151130233941) do
     t.integer  "item_id"
     t.integer  "request_id"
     t.integer  "quantity"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "amount"
     t.string   "currency"
     t.string   "comment"
+    t.string   "request_type"
   end
 
   create_table "requests", :force => true do |t|
     t.integer  "user_id"
     t.integer  "total_amount"
     t.string   "department"
-    t.string   "request_type"
     t.text     "reason"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.string   "status",        :default => "Open"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "status",               :default => "Open"
     t.datetime "date_approved"
     t.string   "title"
+    t.string   "reason_for_rejection"
+    t.string   "request_number"
   end
 
   create_table "stations", :force => true do |t|
