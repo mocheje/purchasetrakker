@@ -40,7 +40,8 @@
             <thead>
             <tr>
               <th width="50">id</th>
-              <th>Title</th>
+              <th width="100">Request</th>
+              <th width="500">Request Title</th>
               <th width="100">Status</th>
               <th width="100">Amount</th>
               <th width="100">Date</th>
@@ -51,10 +52,11 @@
             <% @requests.each do |request| %>
                 <tr id="<%= "trow_" + request.id.to_s %>">
                   <td class="text-center"><%= request.id %></td>
-                  <td><strong><%= request.title %></strong></td>
+                  <td><strong><%= request.request_number.upcase if request.request_number %></strong></td>
+                  <td><%= request.title  %></td>
                   <td><span class="<% if request.status == "Open"  %> label label-default <% elsif request.status == "Approved" %> label label-success <% else %> label label-danger <% end %>"><%= request.status %></span></td>
                   <td><%= request.total_amount %></td>
-                  <td><% request.created_at %></td>
+                  <td><%= request.created_at.strftime("%F" + " at " + "%T") %></td>
                   <td>
                     <a href="<%= request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-search"></span></a>
                     <% unless ( request.approved? | request.rejected? ) %>
