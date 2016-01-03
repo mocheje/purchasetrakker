@@ -1,4 +1,5 @@
 ActiveAdmin.register RequestItem do
+  config.per_page = 10
   menu false
   index do
     column :photo do |request_item|

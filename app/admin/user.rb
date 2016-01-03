@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
   menu :priority => 6
+  config.per_page = 10
   menu :label => "Staff"
   show do |user|
     attributes_table do
@@ -44,7 +45,7 @@ ActiveAdmin.register User do
 
 
   form :html => { :enctype => "multipart/form-data" } do |f|
-    f.inputs "New User", :multipart => true do
+    f.inputs "New Staff", :multipart => true do
       f.input :first_name
       f.input :last_name
       f.input :position

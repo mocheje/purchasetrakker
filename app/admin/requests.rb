@@ -1,4 +1,5 @@
 ActiveAdmin.register Request do
+  config.per_page = 10
   menu :priority => 3
   scope(:open){|request| request.openrequest  }
   scope :approved
@@ -17,6 +18,14 @@ ActiveAdmin.register Request do
     end
     redirect_to :back
   end
+  filter :request_number
+  filter :title, :as => :string
+  filter :total_amount
+  filter :user, label: "staff", as: :select, collection: proc { User.all.map{|user| ["#{user.first_name } #{user.last_name}", user.id] }}
+  filter :department,:as => :select, :collection => Department.all
+  filter :status, :as => :select, :collection => ["Approved", "Rejected", "Open"]
+  filter :created_at
+  filter :date_approved
 
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Request Header", :multipart => true do
@@ -50,9 +59,7 @@ ActiveAdmin.register Request do
     column :Requester do |request|
       link_to(image_tag(request.user.photo.url(:thumb)), admin_user_path(request.user)) if request.user
     end
-    column :title do |request|
-      link_to(request.title, admin_request_path(request))
-    end
+    column("request") {|request| link_to(truncate("#{request.request_number.upcase if request.request_number} - #{request.title}", :lenght => 20), admin_request_path(request))}
     column :total_amount
     column("department") { |request|
       link_to("#{request.user.department.name} - #{request.user.department.station}", admin_department_path(request.user.department)) if request.user.department
@@ -70,7 +77,6 @@ ActiveAdmin.register Request do
     column :date_approved
 
     actions defaults: true do |request|
-      link_to 'Approve', admin_request_path(request) if request.open?
     end
   end
 
@@ -82,7 +88,7 @@ ActiveAdmin.register Request do
             span link_to(image_tag(ritem.item.photo.url(:thumb)), admin_item_path(ritem.item))
           end
       end
-      row :id
+      row :request_number
       row :title
       row :total_amount
       row("department"){
