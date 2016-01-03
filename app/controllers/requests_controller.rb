@@ -2,7 +2,7 @@ class RequestsController < InheritedResources::Base
   before_filter :authenticate_user!
 
   def index
-    @requests = current_user.requests.recent
+    @requests = current_user.requests.recent.page(params[:page]).per(15)
     @approved = current_user.requests.approved.count
     @rejected = current_user.requests.rejected.count
     @open = current_user.requests.openrequest.count

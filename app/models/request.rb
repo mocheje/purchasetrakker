@@ -1,6 +1,6 @@
 class Request < ActiveRecord::Base
   attr_accessible :reason_for_rejection, :request_number, :department, :reason, :user_id, :date_approved, :status, :title, :request_items_attributes, :created_at
-  has_many :request_items
+  has_many :request_items, dependent: :destroy
   has_many :purchases
   belongs_to :user
   accepts_nested_attributes_for :request_items, allow_destroy: true
