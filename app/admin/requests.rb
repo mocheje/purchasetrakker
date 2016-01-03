@@ -40,7 +40,7 @@ ActiveAdmin.register Request do
         a.input   :request_type, :as => :select, :collection => ["New", "Replacemeent", "Damaged", "others"]
         a.input :quantity
         a.input :amount
-        a.input :currency, :as => :select, :collection => ["NGN", "USD", "GBP","EUR"]
+        a.input :currency, :as => :select, :collection => ["NGN"]
       end
     end
     f.buttons
