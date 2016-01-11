@@ -42,10 +42,10 @@
       <li id="goods_receipt" class="<%= "active" if controller_name == "purchases" %>" >
         <a href="<%= purchases_path %>"><span class="fa fa-truck"></span> <span class="xn-text">Goods Receipt</span></a>
       </li>
-      <li id="inbox" class="<%= "active" if controller_name == "inbox" %>" >
-        <a href="<%= inbox_index_path %>"><span class="fa fa-envelope"></span> <span class="xn-text">Inbox</span></a>
+      <li id="inbox" class="<%= "active" if controller_name == "conversations" %>" >
+        <a href="<%= conversations_path %>"><span class="fa fa-envelope"></span> <span class="xn-text">Inbox</span></a>
       </li>
-      <li id="profile" >
+      <li id="profile" class="<%= "active" if controller_name == "profile" %>">
         <a href="<%= profile_index_path %>"><span class="fa fa-user"></span> <span class="xn-text">Profile</span></a>
       </li>
 

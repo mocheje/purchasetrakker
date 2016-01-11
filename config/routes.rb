@@ -1,4 +1,14 @@
 PurchaseTrakker::Application.routes.draw do
+  resources :messages, only: [:new, :create]
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+      post :restore
+      delete :empty_trash
+      post :mark_as_read
+      delete :move_to_trash
+    end
+  end
   get "inbox/index"
 
   get "profile/index"

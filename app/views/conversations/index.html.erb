@@ -1,0 +1,40 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb push-down-0">
+  <li><a href="#">Home</a></li>
+  <li class="active">Message</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- START CONTENT FRAME -->
+<div class="content-frame">
+  <!-- START CONTENT FRAME TOP -->
+  <div class="content-frame-top">
+    <div class="page-title">
+      <h2><span class="fa fa-file-text"></span> Message</h2>
+    </div>
+
+    <div class="pull-right">
+      <button class="btn btn-default"><span class="fa fa-print"></span> Print</button>
+      <button class="btn btn-default content-frame-left-toggle"><span class="fa fa-bars"></span></button>
+    </div>
+  </div>
+  <!-- END CONTENT FRAME TOP -->
+
+    <%= render partial: 'side_panel' %>
+
+  <div class="col-sm-9">
+    <% if @box == 'trash' %>
+        <% if @conversations.empty? %>
+            <h5>Trash is Empty </h5>
+        <% else %>
+            <%= link_to 'Empty trash', empty_trash_conversation_path(@conversations), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+    <% end %>
+    <ul class="list-group">
+      <%= render partial: 'conversations/conversation', collection: @conversations %>
+    </ul>
+
+    <%= paginate @conversations %>
+  </div>
+</div>
+<!-- END CONTENT FRAME -->

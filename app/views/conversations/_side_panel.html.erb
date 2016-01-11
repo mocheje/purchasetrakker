@@ -1,0 +1,16 @@
+<!-- START CONTENT FRAME LEFT -->
+<div class="content-frame-left">
+  <div class="block">
+    <% if controller_name != "messages" %>
+        <a href="<%= new_message_path %>" class="btn btn-danger btn-block btn-lg"><span class="fa fa-edit"></span> COMPOSE</a>
+    <% end %>
+  </div>
+  <div class="block">
+    <div class="list-group border-bottom">
+      <a href="/conversations?box=inbox" class="list-group-item <%= @inbox if @inbox %> "><span class="fa fa-inbox"></span> Inbox <span class="badge badge-success"> <%= @inbox_count %> </span></a>
+      <a href="/conversations?box=sent" class="list-group-item <%= @sent if @sent %> "><span class="fa fa-rocket"></span> Sent <span class="badge badge-default"> <%= @sentbox_count %> </span> </a>
+      <a href="/conversations?box=trash" class="list-group-item <%= @trash if @trash %>"><span class="fa fa-trash-o" ></span> Trash <span class="badge badge-warning"> <%= @trash_count %> </span></a>
+    </div>
+  </div>
+</div>
+<!-- END CONTENT FRAME LEFT -->

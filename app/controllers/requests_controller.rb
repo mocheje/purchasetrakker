@@ -6,12 +6,14 @@ class RequestsController < InheritedResources::Base
     @approved = current_user.requests.approved.count
     @rejected = current_user.requests.rejected.count
     @open = current_user.requests.openrequest.count
+    @unread = current_user.mailbox.inbox(:unread => true).count(:id, :distinct => true)
   end
 
   def show
     @request = Request.find(params[:id])
     @request_items = @request.request_items
     @cal_total = cal(@request_items)
+    @goods_receipt = @request.purchases
   end
 
   def new

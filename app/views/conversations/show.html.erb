@@ -1,0 +1,62 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb push-down-0">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Pages</a></li>
+  <li><a href="#">Mailbox</a></li>
+  <li class="active">Message</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- START CONTENT FRAME -->
+<div class="content-frame">
+  <!-- START CONTENT FRAME TOP -->
+  <div class="content-frame-top">
+    <div class="page-title">
+      <h2><span class="fa fa-file-text"></span> <%= @conversation.subject %>  </h2>
+    </div>
+
+    <div class="pull-right">
+      <button class="btn btn-default"><span class="fa fa-print"></span> Print</button>
+      <button class="btn btn-default content-frame-left-toggle"><span class="fa fa-bars"></span></button>
+    </div>
+  </div>
+  <!-- END CONTENT FRAME TOP -->
+
+  <%= render partial: 'side_panel' %>
+
+  <div class="content-frame-body" style="height: 840px;">
+
+    <div class="panel panel-default">
+
+      <% @conversation.receipts_for(current_user).each do |receipt| %>
+          <% message = receipt.message %>
+
+          <div class="panel-heading">
+            <div class="pull-left">
+              <%= image_tag message.sender.photo.url(:thumb), class: 'panel-title-image', alt: "#{message.sender.first_name + ' ' + message.sender.last_name }"%>
+              <h3 class="panel-title"><%= message.sender.first_name + ' ' + message.sender.last_name %> <small> <%= message.sender.email %> </small></h3>
+            </div>
+            <div class="pull-right">
+              <button class="btn btn-default"><span class="fa fa-mail-reply"></span></button>
+              <button class="btn btn-default"><span class="fa fa-warning"></span></button>
+              <button class="btn btn-default"><span class="fa fa-trash-o"></span></button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <small class="pull-right text-muted"><span class="fa fa-clock-o"></span> <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %> </small>
+            <p> <%= message.body %> </p>
+
+          </div>
+      <% end %>
+    </div>
+    <div class="form-group push-up-20">
+      <label>Quick Reply</label>
+      <%= form_tag reply_conversation_path(@conversation), method: :post do %>
+          <div class="form-group">
+            <%= text_area_tag 'body', nil, cols: 3, class: 'form-control summernote_lite', placeholder: 'Type Your Reply...', required: true %>
+          </div>
+          <button type="submit" name="submit1" value="submit1" onclick="this.value='submit1' " class="btn btn-success pull-right"> <span class="fa fa-mail-reply"></span> Post Reply </button>
+      <% end %>
+    </div>
+  </div>
+</div>
