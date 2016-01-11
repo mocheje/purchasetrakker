@@ -268,12 +268,12 @@ Devise.setup do |config|
   ActionMailer::Base.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :domain               => "localhost:3000",
+      :domain               => ENV["APP_HOST"],
       :user_name            => ENV["GMAIL_USERNAME"],
       :password             => ENV["GMAIL_PASSWORD"],
       :authentication       => "plain",
       :enable_starttls_auto => true
   }
 
-  ActionMailer::Base.default_url_options = { :host => 'localhost:3000' }
+  ActionMailer::Base.default_url_options = { :host => ENV["APP_HOST"] }
 end
