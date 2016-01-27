@@ -17,7 +17,7 @@
           <div class="panel-body">
             <h3><span class="fa fa-user"></span> <%= @profile.first_name + " " + @profile.last_name %></h3>
             <p>
-              <%= @profile.department.name + " - " + @profile.department.station %>
+              <%= @profile.department.name + " - " + @profile.department.station.name %>
             </p>
             <div class="text-center" id="user_image">
               <%= image_tag @profile.photo.url(:medium), :class => "img-thumbnail" %>

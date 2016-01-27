@@ -31,7 +31,7 @@ ActiveAdmin.register User do
     column :email
     column :position
     column :department do |user|
-      link_to("#{user.department.name} - #{user.department.station}", admin_department_path(user.department)) if user.department
+      link_to("#{user.department.name} - #{user.department.station.name}", admin_department_path(user.department)) if user.department
     end
     column :last_sign_in_at
     column :sign_in_count
@@ -49,13 +49,12 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :position
-      f.input :department, :as => :select, :collection => Department.all.map{|u| ["#{u.name} - #{u.station}", u.id]}
+      f.input :department, :as => :select, :collection => Department.all.map{|u| ["#{u.name} - #{u.station.name}", u.id]}
       f.input :email
       f.input :password
       f.input :password_confirmation
       f.input :photo, :as => :file, :hint => f.object.photo.nil? ? f.template.content_t(:span, "no photo yet"): f.template.image_tag(f.object.photo.url(:medium))
-
-
+      f.input :roles, :as => :check_boxes, :multiple => true, :member_label => :name
     end
     f.buttons
   end

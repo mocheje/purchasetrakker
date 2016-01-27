@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_filter :authenticate_user!
+  skip_authorization_check
   before_filter :get_mailbox
   before_filter :set_count
 

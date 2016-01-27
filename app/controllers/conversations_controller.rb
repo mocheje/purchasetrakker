@@ -1,9 +1,9 @@
 class ConversationsController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :get_mailbox
   before_filter :get_conversation, except: [:index, :empty_trash]
   before_filter :get_box, only: [:index]
   before_filter :set_count
+  skip_authorization_check
 
   def index
     if @box.eql? "inbox"

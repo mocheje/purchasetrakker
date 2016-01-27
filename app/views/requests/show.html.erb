@@ -24,7 +24,7 @@
 
         <div class="invoice-address">
           <h5>From</h5>
-          <h6><%= @request.user.department.name + "-" +@request.user.department.station%></h6>
+          <h6><%= @request.user.department.name + "-" +@request.user.department.station.name %></h6>
           <p><%= @request.user.first_name.capitalize + " " + @request.user.last_name.capitalize %></p>
           <p><%= @request.reason.truncate(30) %></p>
         </div>

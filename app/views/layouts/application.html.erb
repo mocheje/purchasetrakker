@@ -32,23 +32,45 @@
           </div>
           <div class="profile-data">
             <div class="profile-data-name"><%= current_user.first_name + " " + current_user.last_name %></div>
-            <div class="profile-data-title"><%= current_user.department.name + " - " + current_user.department.station %></div>
+            <div class="profile-data-title"><%= current_user.department.name + " - " + current_user.department.station.name %></div>
           </div>
         </div>
       </li>
-      <li id="Request" class="<%= "active" if controller_name == "requests" %>" >
-        <a href="<%= requests_path %>"><span class="fa fa-shopping-cart"></span> <span class="xn-text">Request</span></a>
+      <li id="inbox" class="<%= "active" if controller_name == "welcome" %>" >
+        <a href="<%= welcome_index_path %>"><span class="fa fa-home"></span> <span class="xn-text">Home</span></a>
       </li>
-      <li id="goods_receipt" class="<%= "active" if controller_name == "purchases" %>" >
-        <a href="<%= purchases_path %>"><span class="fa fa-truck"></span> <span class="xn-text">Goods Receipt</span></a>
-      </li>
-      <li id="inbox" class="<%= "active" if controller_name == "conversations" %>" >
-        <a href="<%= conversations_path %>"><span class="fa fa-envelope"></span> <span class="xn-text">Inbox</span></a>
-      </li>
+
       <li id="profile" class="<%= "active" if controller_name == "profile" %>">
         <a href="<%= profile_index_path %>"><span class="fa fa-user"></span> <span class="xn-text">Profile</span></a>
       </li>
+      <% if can? :index, Request %>
+          <li id="Request" class="<%= "active" if controller_name == "requests" %>" >
+            <a href="<%= requests_path %>"><span class="fa fa-shopping-cart"></span> <span class="xn-text">Request</span></a>
+          </li>
+      <% end %>
+      <% if can? :index, Purchase %>
+          <li id="goods_receipt" class="<%= "active" if controller_name == "purchases" %>" >
+            <a href="<%= purchases_path %>"><span class="fa fa-truck"></span> <span class="xn-text">Goods Receipt</span></a>
+          </li>
+      <% end %>
+      <% if current_user.role?(:stockkepper) %>
+          <li id="Inventory" class="<%= "active" if controller_name == "inventories" %>">
+            <a href="<%= inventories_index_path %>"><span class="fa fa-list-alt"></span> <span class="xn-text">Stock Inventory</span></a>
+          </li>
+      <% end %>
+          <li id="inbox" class="<%= "active" if controller_name == "conversations" %>" >
+            <a href="<%= conversations_path %>"><span class="fa fa-envelope"></span> <span class="xn-text">Inbox</span></a>
+          </li>
 
+          <li id="profile" class="<%= "active" if controller_name == "profile" %>">
+            <a href="<%= profile_index_path %>"><span class="fa fa-user"></span> <span class="xn-text">Profile</span></a>
+          </li>
+
+      <% if current_user.role?(:admin) %>
+          <li id="Admin Console" >
+            <a href="<%= admin_dashboard_path %>"><span class="fa fa-dashboard"></span> <span class="xn-text">Admin Console</span></a>
+          </li>
+      <% end %>
     </ul>
 
     <!-- END X-NAVIGATION -->
@@ -67,9 +89,11 @@
       <!-- END TOGGLE NAVIGATION -->
       <!-- SEARCH -->
       <li class="xn-search">
-        <form role="form">
-          <input type="text" name="search" placeholder="Search..."/>
-        </form>
+        <%= form_tag requests_path, :method => 'get' do %>
+            <p>
+              <%= text_field_tag :search, params[:search], :placeholder => "Enter Request Number..." %>
+            </p>
+        <% end %>
       </li>
       <!-- END SEARCH -->
       <!-- POWER OFF -->
@@ -142,6 +166,12 @@
     <!-- PAGE CONTENT WRAPPER -->
     <div class="page-content-wrap">
       <div class="row">
+        <% if flash[:alert] %>
+            <p class="flash-error"><%= flash[:alert] %></p>
+        <% end %>
+        <% if flash[:warning] %>
+            <p class="flash-notice"><%= flash[:warning] %></p>
+        <% end %>
         <%= yield %>
       </div>
     </div>
@@ -175,6 +205,12 @@
 
 </div>
 <% else %>
+    <% if flash[:alert] %>
+        <p class="flash-error"><%= flash[:alert] %></p>
+    <% end %>
+    <% if flash[:notice] %>
+        <p class="flash-notice"><%= flash[:notice] %></p>
+    <% end %>
     <%= yield %>
 <% end %>
 </body>

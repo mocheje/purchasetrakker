@@ -5,6 +5,7 @@
   <li><a href="#">Mailbox</a></li>
   <li class="active">Message</li>
 </ul>
+<div class="spacer">&nbsp;</div>
 <!-- END BREADCRUMB -->
 <div class="col-md-3">
 
@@ -21,7 +22,7 @@
 
 </div>
 
-<div class="col-md-3">
+<div class="col-md-3" >
   <div class="list-group border-bottom push-down-20">
     <a href="#" class="list-group-item active">Request / Activity Breakdown <span class="badge badge-primary"><%= @approved + @rejected + @open %></span></a>
     <a href="#" class="list-group-item">Total Approved <span class="badge badge-success"><%= @approved %></span></a>
@@ -31,7 +32,7 @@
 </div>
 
 <div class="col-md-3">
-
+    <p>This is blah blah blah</p>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -78,7 +79,7 @@
             </tbody>
           </table>
           <div class="pull-right">
-              <%= paginate @requests %>
+              <%= paginate @requests unless @query %>
           </div>
         </div>
 

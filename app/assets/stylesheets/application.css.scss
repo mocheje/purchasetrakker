@@ -8,3 +8,25 @@
   font-family: "monotype-corsiva courier verdana ";
   font-weight: bold;
 }
+.flash-notice, .flash-error {
+  background: #f7f1d3;
+  background: -webkit-linear-gradient(-90deg, #f7f1d3, #f5edc5);
+  background: -moz-linear-gradient(-90deg, #f7f1d3, #f5edc5);
+  background: linear, -90deg, #f7f1d3, #f5edc5;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF7F1D3', endColorstr='#FFF5EDC5');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF7F1D3', endColorstr='#FFF5EDC5');
+  text-shadow: #fafafa 0 1px 0;
+  border-bottom: 1px solid #eee098;
+  color: #cb9810;
+  font-weight: bold;
+  font-size: 1.1em;
+  line-height: 1.0em;
+  margin-bottom: 10px;
+  padding: 13px 30px 11px;
+  position: relative;
+  top: 4px;
+  text-align: center;
+}
+.spacer{
+  margin-top: 5px;
+}

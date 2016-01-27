@@ -1,4 +1,6 @@
 PurchaseTrakker::Application.routes.draw do
+  get "inventories/index"
+
   resources :messages, only: [:new, :create]
   resources :conversations, only: [:index, :show, :destroy] do
     member do
@@ -23,7 +25,7 @@ PurchaseTrakker::Application.routes.draw do
 
   get "welcome/index"
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+#  devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   resources :purchases
@@ -91,7 +93,7 @@ PurchaseTrakker::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delet# e pub:to => 'welcome#index'"admin/dashboard#index"
 
-  root :to => 'requests#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160110170101) do
+ActiveRecord::Schema.define(:version => 20160127065026) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,7 +48,15 @@ ActiveRecord::Schema.define(:version => 20160110170101) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
-    t.string   "station"
+    t.integer  "station_id", :limit => 255
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "item_inventories", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.integer  "station_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -117,12 +125,12 @@ ActiveRecord::Schema.define(:version => 20160110170101) do
   create_table "purchases", :force => true do |t|
     t.integer  "item_id"
     t.integer  "department_id",     :limit => 255
-    t.datetime "approved"
-    t.integer  "requester"
+    t.integer  "user_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.integer  "request_id"
     t.integer  "quantity_received"
+    t.integer  "station_id"
   end
 
   create_table "request_items", :force => true do |t|
@@ -149,6 +157,17 @@ ActiveRecord::Schema.define(:version => 20160110170101) do
     t.string   "title"
     t.string   "reason_for_rejection"
     t.string   "request_number"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "stations", :force => true do |t|

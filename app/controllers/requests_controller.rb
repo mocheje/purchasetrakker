@@ -1,8 +1,12 @@
 class RequestsController < InheritedResources::Base
-  before_filter :authenticate_user!
-
+  load_and_authorize_resource
   def index
-    @requests = current_user.requests.recent.page(params[:page]).per(15)
+    if params[:search]
+      @requests = Request.search(params[:search])
+      @query = true
+    else
+      @requests = current_user.requests.recent.page(params[:page]).per(15)
+    end
     @approved = current_user.requests.approved.count
     @rejected = current_user.requests.rejected.count
     @open = current_user.requests.openrequest.count

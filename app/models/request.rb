@@ -59,4 +59,12 @@ class Request < ActiveRecord::Base
     self.total_amount = amount
     self.save if amount != m_amount
   end
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['request_number LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 end

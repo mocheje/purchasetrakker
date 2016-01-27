@@ -716,10 +716,10 @@ body.page-container-boxed.wall_10 {
   padding: 10px 5px;
 }
 .x-navigation.x-navigation-horizontal .xn-search input {
-  width: 100px;
+  width: 180px;
 }
 .x-navigation.x-navigation-horizontal .xn-search input:focus {
-  width: 200px;
+  width: 220px;
 }
 .x-navigation.x-navigation-horizontal .xn-search:before {
   left: 5px;

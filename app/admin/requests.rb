@@ -1,4 +1,5 @@
-ActiveAdmin.register Request do
+ActiveAdmin.register Request, :namespace => :admin do
+  # controller.authorize_resource
   config.per_page = 10
   menu :priority => 3
   scope(:open){|request| request.openrequest  }
@@ -62,7 +63,7 @@ ActiveAdmin.register Request do
     column("request") {|request| link_to(truncate("#{request.request_number.upcase if request.request_number} - #{request.title}", :lenght => 20), admin_request_path(request))}
     column :total_amount
     column("department") { |request|
-      link_to("#{request.user.department.name} - #{request.user.department.station}", admin_department_path(request.user.department)) if request.user.department
+      link_to("#{request.user.department.name} - #{request.user.department.station.name}", admin_department_path(request.user.department)) if request.user.department
     }
     column :reason
     column("status") {|request|
@@ -92,7 +93,7 @@ ActiveAdmin.register Request do
       row :title
       row :total_amount
       row("department"){
-        link_to("#{request.user.department.name} - #{request.user.department.station}", admin_department_path(request.user.department)) if request.user.department
+        link_to("#{request.user.department.name} - #{request.user.department.station.name}", admin_department_path(request.user.department)) if request.user.department
       }
       row :reason
       row("status") {|request|
@@ -136,7 +137,7 @@ ActiveAdmin.register Request do
         request.user.first_name + ' ' + request.user.last_name
       }
       row("Department") {
-        request.user.department.name + ' - ' + request.user.department.station
+        request.user.department.name + ' - ' + request.user.department.station.name
       }
       row("Position") {
         request.user.position
@@ -202,5 +203,10 @@ ActiveAdmin.register Request do
       end
     end
 
+  end
+
+  collection_action :autocomplete, method: :get do
+    requests = Request.where('LOWER(request_number) LIKE ?', "#{params[:term]}%")
+    render json: requests, each_serializer: RequestAutocompleteSerializer, root: false
   end
 end

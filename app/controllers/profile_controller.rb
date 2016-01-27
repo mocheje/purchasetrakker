@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
-  before_filter :authenticate_user!
   def index
     @profile = current_user
+    authorize! :update, User
   end
 end
