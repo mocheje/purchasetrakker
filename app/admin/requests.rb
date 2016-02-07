@@ -33,7 +33,7 @@ ActiveAdmin.register Request, :namespace => :admin do
       f.input :user_id, :label => "Staff", :as => :select, :collection => User.all.map{|u| ["#{u.last_name} #{u.first_name}", u.id]}
       f.input   :title
       f.input  :total_amount, :input_html => { :disabled => true }
-      f.input  :department, :as => :select, :collection => Department.all.map{|u| ["#{u.name} - #{u.station}", u.id]}
+      f.input  :department
       f.input     :reason
     end
     f.inputs "Request Items" do

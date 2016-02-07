@@ -19,14 +19,22 @@
     <%= f.label :department %><br />
     <%= f.text_field :department %>
   </div>
-  <div class="field">
-    <%= f.label :approved %><br />
-    <%= f.datetime_select :approved %>
-  </div>
-  <div class="field">
-    <%= f.label :requester %><br />
-    <%= f.number_field :requester %>
-  </div>
+    <div class="field">
+      <%= f.label :user_id %><br />
+      <%= f.number_field :user_id %>
+    </div>
+    <div class="field">
+      <%= f.label :request_id %><br />
+      <%= f.number_field :request_id %>
+    </div>
+    <div class="field">
+      <%= f.label :quantity_received %><br />
+      <%= f.number_field :quantity_received %>
+    </div>
+    <div class="field">
+      <%= f.label :station_id %><br />
+      <%= f.number_field :station_id %>
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>

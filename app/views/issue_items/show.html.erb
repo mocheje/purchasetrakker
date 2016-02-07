@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Item:</b>
+  <%= @issue_item.item_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @issue_item.quantity %>
+</p>
+
+<p>
+  <b>Request:</b>
+  <%= @issue_item.request_id %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @issue_item.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_issue_item_path(@issue_item) %> |
+<%= link_to 'Back', issue_items_path %>

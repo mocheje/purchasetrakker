@@ -1,0 +1,29 @@
+<h1>Listing issue_items</h1>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Request</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @issue_items.each do |issue_item| %>
+  <tr>
+    <td><%= issue_item.item_id %></td>
+    <td><%= issue_item.quantity %></td>
+    <td><%= issue_item.request_id %></td>
+    <td><%= issue_item.comment %></td>
+    <td><%= link_to 'Show', issue_item %></td>
+    <td><%= link_to 'Edit', edit_issue_item_path(issue_item) %></td>
+    <td><%= link_to 'Destroy', issue_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Issue item', new_issue_item_path %>

@@ -3,5 +3,6 @@ class Department < ActiveRecord::Base
   has_many :users
   has_many :purchases
   belongs_to :station
+  has_many :requests
   validates :station, :name, :presence => true
 end

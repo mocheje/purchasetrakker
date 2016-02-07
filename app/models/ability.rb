@@ -32,7 +32,7 @@ class Ability
     #ptrackk abilities
     user ||= User.new
     if user.role? :requester
-      can :read, Request
+      can :manage, Request
       can :delete, Request do |request|
         request.try(:user) == user || user.role?(:admin)
       end
@@ -44,6 +44,10 @@ class Ability
 
     if user.role? :stockkepper
       can :manage, Purchase
+    end
+
+    if user.role? :issuer
+      can :manage, Issue
     end
 
     can :manage, User do |user|

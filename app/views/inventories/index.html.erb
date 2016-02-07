@@ -1,2 +1,64 @@
-<h1>Inventories#index</h1>
-<p>Find me in app/views/inventories/index.html.erb</p>
+<div class="page-content-wrap">
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p>Use search to find contacts. You can search by: name, address, phone. Or use the advanced search.</p>
+          <div class="page-content-wrap">
+
+            <div class="row" id="searchDistributor">
+              <div class="col-md-12 ">
+                <div class="input-group push-down-10 ">
+                  <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                  <input id="search" type="text" class="form-control" placeholder="Search Warehouse" value="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <% if @inventories %>
+        <% @inventories.each do |v|%>
+
+    <div class="col-md-3">
+      <!-- CONTACT ITEM -->
+      <div class="panel panel-default">
+        <div class="panel-body profile">
+          <div class="profile-image">
+            <%= image_tag v.item.photo.url(:medium), alt: v.item.name %>
+          </div>
+          <div class="profile-data">
+            <div class="profile-data-name"><%= v.item.name %></div>
+            <div class="profile-data-title"><%= v.item.description %></div>
+          </div>
+          <div class="profile-controls">
+            <a href="#" class="profile-control-left"><span class="fa fa-info"></span></a>
+            <a href=" <%= inventory_show_path(v) %>" class="profile-control-right"><span class="fa fa-search"></span></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="contact-info">
+            <p><small>Quantity</small><br/><%= v.quantity %></p>
+            <p><small>Station</small><br/><%= v.station.name %></p>
+            <p><small>Unit of Measurement</small><br/><%= v.item.unit_of_measurement %></p>
+          </div>
+        </div>
+      </div>
+      <!-- END CONTACT ITEM -->
+        </div>
+        <% end %>
+    <% end %>
+
+  </div>
+    </div>
+
+<div class="col-md-12">
+  <%= paginate @inventories if @inventories %>
+</div>

@@ -1,0 +1,88 @@
+<% @pclass = "odd" %>
+<% @rclass = "odd" %>
+
+
+<div class="page-content-wrap">
+  <div class="row">
+    <span class="sparkline" sparktype="pie" sparkwidth="50" sparkheight="50"><canvas width="50" height="50" style="display: inline-block; width: 50px; height: 50px; vertical-align: top;"></canvas></span>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- START DEFAULT DATATABLE FOR PURCHASES -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @inventory.item.name %> Purchases at <%= @inventory.station.name %></h3>
+          <ul class="panel-controls">
+            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+            <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+            <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+          </ul>
+        </div>
+        <div class="panel-body" id="purchases">
+          <div class="table-responsive">
+            <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper no-footer"><table class="table datatable_simple dataTable no-footer" id="DataTables_Table_1" role="grid">
+              <thead>
+              <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column ascending" style="width: 276px;">Request Number</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 433px;"> Requester </th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 207px;">Department</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 96px;">Quantity Received</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 183px;"> Date </th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 168px;">Amount</th></tr>
+              </thead>
+              <tbody>
+                <% @purchases.each do |purchase| %>
+                      <tr role="row" class="<%= @pclass %>">
+                        <td class="sorting_1"><a href="<%= request_path(purchase.request.id) %>" > <%= purchase.request.request_number.upcase %> </a></td>
+                        <td> <%= purchase.request.user.first_name + ' ' + purchase.request.user.last_name %> </td>
+                        <td><%= purchase.request.user.department.name + ' - ' + purchase.request.user.department.station.name %></td>
+                        <td><%= purchase.quantity_received %></td>
+                        <td><%= purchase.created_at.strftime("%F" + " at " + "%T")%></td>
+                        <td>$162,700</td>
+                      </tr>
+                    <% if @pclass == "odd" %>
+                        <% @pclass = "even" %>
+                    <% else %>
+                      <% @pclass = "odd" %>
+                    <% end %>
+                  <% end %>
+              </tbody>
+            </table><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite"></div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><%= paginate @purchases %> </div></div>
+          </div>
+        </div>
+      </div>
+      <!-- END DEFAULT DATATABLE FOR PURCHASES -->
+
+      <!-- START DEFAULT DATATABLE FOR ISSUED ITEMS -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @inventory.item.name %> GOODS ISSUE at <%= @inventory.station.name %></h3>
+          <ul class="panel-controls">
+            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+            <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+            <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+          </ul>
+        </div>
+        <div class="panel-body" id="issues">
+          <div class="table-responsive">
+            <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper no-footer"><table class="table datatable_simple dataTable no-footer" id="DataTables_Table_1" role="grid">
+              <thead>
+              <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column ascending" style="width: 276px;">Request Number</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 433px;"> Requester </th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 207px;">Department</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 96px;">Quantity Received</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 183px;"> Date </th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 168px;">Amount</th></tr>
+              </thead>
+              <tbody>
+              <% @issues.each do |issue| %>
+                  <tr role="row" class="<%= @pclass %>">
+
+                  </tr>
+                  <% if @pclass == "odd" %>
+                      <% @pclass = "even" %>
+                  <% else %>
+                      <% @pclass = "odd" %>
+                  <% end %>
+              <% end %>
+              </tbody>
+            </table><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite"></div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><%= paginate @issues %> </div></div>
+          </div>
+        </div>
+      </div>
+      <!-- END DEFAULT DATATABLE FOR ISSUED ITEMS  -->
+
+    </div>
+  </div>
+
+</div>

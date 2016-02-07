@@ -27,8 +27,6 @@ ActiveAdmin.register Purchase do
                  }
     f.input :item_id, as: :hidden
     f.input :quantity_received
-    f.input :station
-
     end
     f.buttons
   end
@@ -38,7 +36,7 @@ ActiveAdmin.register Purchase do
   end
   before_create do |purchase|
     @request = Request.find(purchase.request_id)
-    purchase.department_id = @request.user.department.id
     purchase.user  = @request.user
+    purchase.station = @request.department.station
   end
 end

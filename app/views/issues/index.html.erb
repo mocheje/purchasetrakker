@@ -1,0 +1,31 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb push-down-0">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Pages</a></li>
+  <li><a href="#">Mailbox</a></li>
+  <li class="active">Message</li>
+</ul>
+<!-- END BREADCRUMB -->
+<h1>Goods Issue</h1>
+<div class="col-md-12">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>Enter the Request number for which you want to issue goods.</p>
+      <div class="page-content-wrap">
+        <%= form_tag request_search_url, class: "form-horizontal", id: "requestSearch", remote: true do %>
+            <div class="col-md-12 ">
+              <div class="input-group push-down-10 ">
+                <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                <%= text_field_tag :s, "", class: "form-control ui-autocomplete-input", id: "search", placeholder: "Enter Request Number and press enter" %>
+                <%= hidden_field_tag :c, "purchases" %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="panel-body" id="newRequest"></div>
+

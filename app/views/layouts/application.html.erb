@@ -39,10 +39,7 @@
       <li id="inbox" class="<%= "active" if controller_name == "welcome" %>" >
         <a href="<%= welcome_index_path %>"><span class="fa fa-home"></span> <span class="xn-text">Home</span></a>
       </li>
-
-      <li id="profile" class="<%= "active" if controller_name == "profile" %>">
-        <a href="<%= profile_index_path %>"><span class="fa fa-user"></span> <span class="xn-text">Profile</span></a>
-      </li>
+      
       <% if can? :index, Request %>
           <li id="Request" class="<%= "active" if controller_name == "requests" %>" >
             <a href="<%= requests_path %>"><span class="fa fa-shopping-cart"></span> <span class="xn-text">Request</span></a>
@@ -50,7 +47,12 @@
       <% end %>
       <% if can? :index, Purchase %>
           <li id="goods_receipt" class="<%= "active" if controller_name == "purchases" %>" >
-            <a href="<%= purchases_path %>"><span class="fa fa-truck"></span> <span class="xn-text">Goods Receipt</span></a>
+            <a href="<%= purchases_path %>"><span class="fa fa-truck"></span> <span class="xn-text">Receive Goods</span></a>
+          </li>
+      <% end %>
+      <% if can? :index, Issue %>
+          <li id="goods_issue" class="<%= "active" if controller_name == "issues" %>" >
+            <a href="<%= issues_path %>"><span class="fa fa-check-circle"></span> <span class="xn-text">Issue Goods</span></a>
           </li>
       <% end %>
       <% if current_user.role?(:stockkepper) %>
@@ -120,7 +122,7 @@
           <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
             <a href="#" class="list-group-item">
               <div class="list-group-status status-online"></div>
-              <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
+              <img src="" class="pull-left" alt="John Doe"/>
               <span class="contacts-title"><%= current_user.email%></span>
               <p>Welcome you have several messages</p>
             </a>
@@ -190,7 +192,7 @@
         <div class="mb-title"><span class="fa fa-times"></span> Remove <strong>Data</strong> ?</div>
         <div class="mb-content">
           <p>Are you sure you want to delete this record?</p>
-          <p>Press Yes if you sure.</p>
+          <p>Press Yes if you're sure.</p>
         </div>
         <div class="mb-footer">
           <div class="pull-right">

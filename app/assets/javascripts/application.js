@@ -10,8 +10,43 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
+//= require jquery.min
 //= require jquery_ujs
 //= require requests
-//= require d3.v3.min
-//= require_tree .
+//= require bootstrap.min
+//= require bootstrap-colorpicker
+//= require bootstrap-datepicker
+//= require bootstrap-file-input
+//= require bootstrap-select
+//= require bootstrap-timepicker.min
+
+//= require jquery.sparkline.min
+//= require jquery.tagsinput.min
+//= require jquery.mCustomScrollbar.min
+//= require jquery-ui.min
+//= require plugins
+//= require actions
+//= require summernote
+//= require morris.min
+//= require raphael-min
+//= require jquery.printElement.min
+
+
+
+
+
+
+
+
+
+
+$(function(){
+    $("#requestSearch form input[type='text']").on("keydown", function(){
+        if(evnt.keyCode === 13) {
+            $(this).closest("form").submit();
+            return false
+        }
+        console.log("you pressed the following key %s", evnt.keyCode);
+    })
+});
+

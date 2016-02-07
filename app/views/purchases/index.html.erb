@@ -6,41 +6,25 @@
   <li class="active">Message</li>
 </ul>
 <!-- END BREADCRUMB -->
-<h1>Goods Receipt</h1>
 
-<form action="#" class="form-horizontal">
-  <div class="form-group">
-    <div class="col-md-2"></div>
-    <label class="control-label col-md-2">Request Number:</label>
-    <div class="col-md-4">
-      <input id="quick-search" class="form-control ui-autocomplete-input" autocomplete="off">
-      <div class="help-block"><a href="#">Click Here</a> to proceed to go if you cannot find the Request</div>
+<div class="col-md-12">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>Enter the Request number for which you want to perform a goods receipt.</p>
+      <div class="page-content-wrap">
+        <%= form_tag request_search_url, class: "form-horizontal", id: "requestSearch", remote: true do %>
+            <div class="col-md-12 ">
+              <div class="input-group push-down-10 ">
+                <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                      <%= text_field_tag :s, "", class: "form-control ui-autocomplete-input", id: "search", placeholder: "Enter Request Number and press enter" %>
+                      <%= hidden_field_tag :c, "purchases" %>
+              </div>
+            </div>
+        <% end %>
+        </div>
     </div>
-    <div class="col-md-4"><button type="button" class="btn btn-primary" onclick="showTransactions()">Proceed</button> </div>
-
   </div>
-</form>
 
-<%= link_to 'New Purchase', new_purchase_path %>
-
-<script>
-    $(function() {
-
-        var data_1 = [
-            "0011000012 - Madewell Productions Limited", "0011000013 - Newkelson Agro Allied Industries", "0011000014 - Ab Gold Oladayo Nigeria Limited", "0011000015 - Abiodun Supply Company", "0011000016 - Abimbola Emmanuel Enterprises", "0011000017 - Abmar Builder Merchant Nigeria Enterprises", "0011000018 - Abven Building Materials Company", "0011000019 - A Chukson International Company Limited", "0011000020 - Adeomi Block Industry", "0011000021 - Adebak International Nigeria Limited", "0011000022 - Ade Joseph Block Industry", "0011000023 - Adexco Nigeria Limited", "0011000024 -Ade Naz Nigeria Enterprises", "0011000025 -Aderade Enterprises", "0011000026 -Adesina Commerical Enterprises", "0011000027 -Adekola Building Contracts Services"
-        ];
-
-        $("#quick-search").autocomplete({
-            source: data_1,
-            open: function(event, ui) {
-
-                var autocomplete = $(".ui-autocomplete:visible");
-                var oldTop = autocomplete.offset().top;
-                var newTop = oldTop - $("#quick-search").height() + 25;
-                autocomplete.css("top", newTop);
-
-            }
-        });
-
-    });
-</script>
+</div>
+<div class="panel-body" id="newRequest"></div>

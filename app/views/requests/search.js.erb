@@ -1,0 +1,8 @@
+
+<% if @request && @controller == 'issues' %>
+  $('#newRequest').html("<%= j render "issues/new_issue" %>");
+<% elsif @request && @controller == 'purchases' %>
+    $('#newRequest').html("<%= j render "purchases/new_purchase" %>");
+<% else %>
+$('#newRequest').html("Request not found");
+<% end %>

@@ -14,7 +14,7 @@
 
 <div class="panel-body">
   <div class="push-down-10 pull-right">
-    <button class="btn btn-default"><span class="fa fa-print"></span> Print</button>
+    <button class="btn btn-default" onclick="printInvoice()"><span class="fa fa-print"></span> Print</button>
   </div>
   <!-- INVOICE -->
   <div class="invoice">
@@ -116,3 +116,10 @@
   <!-- END INVOICE -->
 
 </div>
+
+<script>
+  function printInvoice(){
+      console.log("tried this");
+      $('.invoice').printThis();
+  }
+</script>

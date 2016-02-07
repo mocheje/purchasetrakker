@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160127065026) do
+ActiveRecord::Schema.define(:version => 20160206223953) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -51,6 +51,23 @@ ActiveRecord::Schema.define(:version => 20160127065026) do
     t.integer  "station_id", :limit => 255
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+  end
+
+  create_table "issue_items", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.string   "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "issue_id"
+  end
+
+  create_table "issues", :force => true do |t|
+    t.integer  "request_id"
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "item_inventories", :force => true do |t|
@@ -124,10 +141,9 @@ ActiveRecord::Schema.define(:version => 20160127065026) do
 
   create_table "purchases", :force => true do |t|
     t.integer  "item_id"
-    t.integer  "department_id",     :limit => 255
     t.integer  "user_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "request_id"
     t.integer  "quantity_received"
     t.integer  "station_id"
@@ -148,11 +164,11 @@ ActiveRecord::Schema.define(:version => 20160127065026) do
   create_table "requests", :force => true do |t|
     t.integer  "user_id"
     t.integer  "total_amount"
-    t.string   "department"
+    t.integer  "department_id",        :limit => 255
     t.text     "reason"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "status",               :default => "Open"
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.string   "status",                              :default => "Open"
     t.datetime "date_approved"
     t.string   "title"
     t.string   "reason_for_rejection"

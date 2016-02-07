@@ -1,5 +1,6 @@
 class RequestsController < InheritedResources::Base
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:search]
+
   def index
     if params[:search]
       @requests = Request.search(params[:search])
@@ -48,6 +49,17 @@ class RequestsController < InheritedResources::Base
     @request = @source.dup
     @request.request_items = @source.request_items.each {|a| a.id = nil}
     render 'new'
+  end
+
+  def search
+    @query = params[:s]
+    @controller = params[:c]
+    @request = Request.find_by_request_number(@query.downcase)
+    @purchase = Purchase.new
+    @issue = Issue.new
+    if @controller == "issues" and @request
+      @issued = @request.issues
+    end
   end
 end
 

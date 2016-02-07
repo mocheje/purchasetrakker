@@ -1,5 +1,12 @@
 PurchaseTrakker::Application.routes.draw do
+  resources :issues
+
+
+  resources :issue_items
+
+
   get "inventories/index"
+  match 'inventories/:id' => 'inventories#show', as: "inventory_show"
 
   resources :messages, only: [:new, :create]
   resources :conversations, only: [:index, :show, :destroy] do
@@ -15,6 +22,7 @@ PurchaseTrakker::Application.routes.draw do
 
   get "profile/index"
 
+  post "requests/search" => "requests#search", as: :request_search
   resources :departments
 
 
@@ -41,6 +49,7 @@ PurchaseTrakker::Application.routes.draw do
     member do
       get 'copy'
     end
+
   end
 
   # The priority is based upon order of creation:

@@ -1,8 +1,10 @@
 class Request < ActiveRecord::Base
-  attr_accessible :reason_for_rejection, :request_number, :department, :reason, :user_id, :date_approved, :status, :title, :request_items_attributes, :created_at
+  attr_accessible :reason_for_rejection, :request_number, :department_id, :reason, :user_id, :date_approved, :status, :title, :request_items_attributes, :created_at
   has_many :request_items, dependent: :destroy
   has_many :purchases
+  has_many :issues
   belongs_to :user
+  belongs_to :department
   accepts_nested_attributes_for :request_items, allow_destroy: true
   scope :recent, order('id DESC')
   scope :all, order('id DESC')
