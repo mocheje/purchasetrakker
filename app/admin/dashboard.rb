@@ -29,7 +29,7 @@ ActiveAdmin.register_page "Dashboard", :namespace => :admin do
       panel "Most Recent Goods Receipt" do
         Purchase.recent.map do |purchase|
           div :class => "Recent goods Rececipt" do
-           # span link_to("#{purchase.request.request_number } - #{purchase.request.title}", admin_request_path(purchase.request))
+            span link_to("#{purchase.request.request_number } - #{purchase.request.title}", admin_request_path(purchase.request))
           end
         end
       end

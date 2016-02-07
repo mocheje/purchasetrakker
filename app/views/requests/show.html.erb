@@ -1,8 +1,5 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="col-md-4">
-      <h2>REQUEST <strong>#<%= @request.request_number.upcase if @request.request_number %></strong></h2>
-    </div>
 
     <% unless ( @request.approved? or @request.rejected? ) %>
         <%= link_to 'Edit', edit_request_path(@request), :class => "btn btn-primary pull-right", :style => "margin-left: 5px;" %>
@@ -18,7 +15,11 @@
   </div>
   <!-- INVOICE -->
   <div class="invoice">
-
+    <div class="row">
+      <div class="col-md-4">
+        <h2>REQUEST <strong>#<%= @request.request_number.upcase if @request.request_number %></strong></h2>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-4">
 
