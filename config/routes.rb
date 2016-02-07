@@ -34,8 +34,8 @@ PurchaseTrakker::Application.routes.draw do
   get "welcome/index"
 
 
-#  devise_for :users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+ #devise_for :users, ActiveAdmin::Devise.config
+  #ActiveAdmin.routes(self)
 
   resources :purchases
 
