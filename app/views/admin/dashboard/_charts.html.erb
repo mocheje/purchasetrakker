@@ -1,0 +1,137 @@
+<div class="page-content-wrap">
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <!-- START LINE CHART -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Progression report between Request and Goods Issues </h3>
+        </div>
+        <div class="panel-body">
+          <div id="morris-line-example" style="height: 300px;"></div>
+        </div>
+      </div>
+      <!-- END LINE CHART -->
+
+    </div>
+    <div class="col-md-6">
+
+      <!-- START Area CHART -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Apporved purchase versus actual purchase </h3>
+        </div>
+        <div class="panel-body">
+          <div id="morris-area-example" style="height: 300px;"></div>
+        </div>
+      </div>
+      <!-- END Area CHART -->
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <!-- START BAR CHART -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Purchase Variance between periods </h3>
+        </div>
+        <div class="panel-body">
+          <div id="morris-bar-example" style="height: 300px;"></div>
+        </div>
+      </div>
+      <!-- END BAR CHART -->
+
+    </div>
+    <div class="col-md-6">
+
+      <!-- START DONUT CHART -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Station Requisiton/Procurement</h3>
+        </div>
+        <div class="panel-body">
+          <div id="morris-donut-example" style="height: 300px;"></div>
+        </div>
+      </div>
+      <!-- END DONUT CHART -->
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+    var morrisCharts = function() {
+
+        Morris.Line({
+            element: 'morris-line-example',
+            data: [
+                { y: '2006', a: 100, b: 90 },
+                { y: '2007', a: 75,  b: 65 },
+                { y: '2008', a: 50,  b: 40 },
+                { y: '2009', a: 75,  b: 65 },
+                { y: '2010', a: 50,  b: 40 },
+                { y: '2011', a: 75,  b: 65 },
+                { y: '2012', a: 100, b: 90 }
+            ],
+            xkey: 'y',
+            ykeys: ['a', 'b'],
+            labels: ['Series A', 'Series B'],
+            resize: true,
+            lineColors: ['#33414E', '#95B75D']
+        });
+
+
+        Morris.Area({
+            element: 'morris-area-example',
+            data: [
+                { y: '2006', a: 100, b: 90 },
+                { y: '2007', a: 75,  b: 65 },
+                { y: '2008', a: 50,  b: 40 },
+                { y: '2009', a: 75,  b: 65 },
+                { y: '2010', a: 50,  b: 40 },
+                { y: '2011', a: 75,  b: 65 },
+                { y: '2012', a: 100, b: 90 }
+            ],
+            xkey: 'y',
+            ykeys: ['a', 'b'],
+            labels: ['Series A', 'Series B'],
+            resize: true,
+            lineColors: ['#3FBAE4', '#FEA223']
+        });
+
+
+        Morris.Bar({
+            element: 'morris-bar-example',
+            data: [
+                { y: '2006', a: 100, b: 90 },
+                { y: '2007', a: 75,  b: 65 },
+                { y: '2008', a: 50,  b: 40 },
+                { y: '2009', a: 75,  b: 65 },
+                { y: '2010', a: 50,  b: 40 },
+                { y: '2011', a: 75,  b: 65 },
+                { y: '2012', a: 100, b: 90 }
+            ],
+            xkey: 'y',
+            ykeys: ['a', 'b'],
+            labels: ['Series A', 'Series B'],
+            barColors: ['#B64645', '#33414E']
+        });
+
+
+        Morris.Donut({
+            element: 'morris-donut-example',
+            data: [
+                {label: "Total Purchases", value: 12},
+                {label: "Total Goods Issues", value: 30},
+                {label: "Total Requests", value: 20}
+            ],
+            colors: ['#95B75D', '#3FBAE4', '#FEA223']
+        });
+
+    }();
+</script>

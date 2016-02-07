@@ -141,7 +141,8 @@ ActiveAdmin.setup do |config|
   #   config.register_javascript 'my_javascript.js'
   # To load a stylesheet:
   # To load a javascript file:
-  config.register_javascript 'd3.v3.min.js'
+  config.register_javascript 'morris.min.js'
+  config.register_javascript 'raphael-min.js'
 
 
 
