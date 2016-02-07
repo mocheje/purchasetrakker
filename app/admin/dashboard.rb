@@ -35,13 +35,13 @@ ActiveAdmin.register_page "Dashboard", :namespace => :admin do
       end
     end
   end
-    columns do
-      column do
-        div do
-          render 'admin/dashboard/bar'
-        end
-      end
-    end
+    # columns do
+    #   column do
+    #     div do
+    #       render 'admin/dashboard/bar'
+    #     end
+    #   end
+    # end
   end
 
 end
