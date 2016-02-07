@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   validates :department_id, :photo, :position, :presence => true
   has_attached_file :photo, :styles => { :medium => "300x300", :thumb => "100x100" }
+  validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 
 

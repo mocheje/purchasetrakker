@@ -5,7 +5,7 @@ ActiveAdmin.register User do
   show do |user|
     attributes_table do
       row :image do
-        image_tag(user.photo.url(:medium))
+        image_tag(user.photo.url(:medium)) if user.photo
       end
       row :first_name
       row :last_name
