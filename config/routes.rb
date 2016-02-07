@@ -23,7 +23,7 @@ PurchaseTrakker::Application.routes.draw do
   get "profile/index"
 
   post "requests/search" => "requests#search", as: :request_search
-  resources :departments
+
 
 
   resources :stations
@@ -33,8 +33,9 @@ PurchaseTrakker::Application.routes.draw do
 
   get "welcome/index"
 
+
 #  devise_for :users, ActiveAdmin::Devise.config
-  #ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self)
 
   resources :purchases
 
@@ -51,6 +52,8 @@ PurchaseTrakker::Application.routes.draw do
     end
 
   end
+
+  resources :departments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
