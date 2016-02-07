@@ -8,4 +8,6 @@ class Item < ActiveRecord::Base
   belongs_to :station
   validates :currency, :name, :unit_of_measurement, :unit_price, :photo, :presence => true
   validates :name, :uniqueness => true
+  validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
 end

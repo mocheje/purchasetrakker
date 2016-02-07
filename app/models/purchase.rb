@@ -10,6 +10,10 @@ class Purchase < ActiveRecord::Base
 
   validates :quantity_received, numericality: true
   validates :request_id, :item_id, :station_id, presence: true
+  validate :req_status
+
+
+
   after_create :update_inventory
 
   def update_inventory
@@ -22,6 +26,13 @@ class Purchase < ActiveRecord::Base
       @item_inventory.update_attributes({:quantity => n_quantity})
     else
       ItemInventory.create({:item_id => item, :quantity => quantity, :station_id => station})
+    end
+  end
+
+  def req_status
+    @request = Request.find(request_id)
+    unless @request.approved?
+      errors.add(:request_id, "Goods receipt can only be processed for Approved request")
     end
   end
 

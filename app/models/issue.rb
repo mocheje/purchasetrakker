@@ -11,7 +11,7 @@ class Issue < ActiveRecord::Base
   def req_status
     @request = Request.find(request_id)
     unless @request.approved?
-      errors.add(:request_id, "Goods receipt can only be processed for Approved request")
+      errors.add(:request_id, "Goods can only be issued for Approved Request")
     end
   end
 end
