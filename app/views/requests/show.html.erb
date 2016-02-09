@@ -91,7 +91,41 @@
 
     <div class="row">
       <div class="col-md-6">
+        <% if @request.open? && current_user.id == @request.approver_id %>
 
+            <!-- START ACCORDION -->
+            <div class="panel-group accordion accordion-dc">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a href="#accTwoColTwo">
+                      Approve Request
+                    </a>
+                  </h4>
+                </div>
+                <div class="panel-body" id="accTwoColTwo" style="display: block;">
+                  Please Note that This process cannot be reversed. Ensure all things have been considered before performing this action.
+                  <p>Also note that Goods Receipt and Goods Issue can only be done on an <b>Approved Request</b></p>
+                  <%= render 'approve' %>
+                </div>
+              </div>
+              <div class="panel panel-warning">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a href="#accTwoColThree">
+                      Reject Request
+                    </a>
+                  </h4>
+                </div>
+                <div class="panel-body" id="accTwoColThree" style="display: block;">
+                  Please Note that rejected Request cannot not be edited or deleted. to make similar request, the requester must copy the rejected request into a new request.
+                  <p>Also make sure to enter reason for rejection before rejecting any request. As this is a criteria for rejection</p>
+                  <%= render 'reject' %>
+                </div>
+              </div>
+            </div>
+            <!-- END ACCORDION -->
+        <% end %>
       </div>
       <div class="col-md-6">
         <h4>Amount Due</h4>
@@ -115,18 +149,12 @@
 
   </div>
   <!-- END INVOICE -->
-  <% if @request.open? %>
-      <div class="row">
-        <%= render 'approve' %>
-        <%= render 'reject' %>
-      </div>
-  <% end %>
 
 </div>
 
 <script>
   function printInvoice(){
-      console.log("tried this");
       $('.invoice').printThis();
   }
+  $('#approvalSection').show();
 </script>

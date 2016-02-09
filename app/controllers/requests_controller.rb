@@ -12,6 +12,7 @@ class RequestsController < InheritedResources::Base
     @rejected = current_user.requests.rejected.count
     @open = current_user.requests.openrequest.count
     @unread = current_user.mailbox.inbox(:unread => true).count(:id, :distinct => true)
+    @openrequest = Request.recent.openrequest.where(:approver_id == current_user).page(params[:page]).per(15)
   end
 
   def show
@@ -64,19 +65,28 @@ class RequestsController < InheritedResources::Base
 
   def approve
     @request = Request.find(params[:id])
-    if @request.approve
-      redirect_to :back, notice: "Approved Succesfully"
+    if @request.approver_id == current_user.id
+      if @request.approve
+        redirect_to :back, notice: "Approved Succesfully"
+      else
+        reidrect_to :back, alert: "Unsuccessful Request Approval"
+      end
     else
-      reidrect_to :back, alert: "Unsuccessful Request Approval"
+      redirect_to :back, alert: "Only the default approver, the admin or the selected approver can approve this request"
     end
   end
 
   def reject
     @request = Request.find(params[:id])
-    if @request.reject(params[:reason])
-      redirect_to :back, alert: "Request Rejected"
+    #ensure person performing the action is the right person
+    if @request.approver_id == current_user.id
+      if @request.reject(params[:reason])
+        redirect_to :back, alert: "Request Rejected"
+      else
+        redirect_to :back, alert: "Rejection not possible"
+      end
     else
-      redirect_to :back, alert: "Rejection not possible"
+      redirect_to :back, alert: "Only the default approver, the admin or the selected approver can reject this request"
     end
   end
 end

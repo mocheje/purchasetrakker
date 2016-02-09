@@ -13,6 +13,9 @@ class Request < ActiveRecord::Base
   scope :openrequest, where(:status => "Open" )
   before_create :set_number
   validates :title, :presence => true
+  validate :requester_not_approver
+
+
   after_save :update_amount
   after_update :update_amount
 
@@ -67,6 +70,12 @@ class Request < ActiveRecord::Base
       find(:all, :conditions => ['request_number LIKE ?', "%#{search}%"])
     else
       find(:all)
+    end
+  end
+
+  def requester_not_approver
+    if user_id == approver_id
+      errors.add(:approver_id, "The Requester cannot be the Approver. Leave blank to use the default department approver")
     end
   end
 end

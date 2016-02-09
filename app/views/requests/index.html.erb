@@ -75,6 +75,61 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="panel-title"> Open Request Awaiting your Approval</h3>
+      </div>
+
+      <div class="panel-body panel-body-table">
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-actions">
+            <thead>
+            <tr>
+              <th width="50">id</th>
+              <th width="100">Request</th>
+              <th width="500">Request Title</th>
+              <th width="100">Status</th>
+              <th width="100">Amount</th>
+              <th width="100">Date</th>
+              <th width="120">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @openrequest.each do |request| %>
+                <tr id="<%= "trow_" + request.id.to_s %>">
+                  <td class="text-center"><%= request.id %></td>
+                  <td><strong><%= request.request_number.upcase if request.request_number %></strong></td>
+                  <td><%= request.title  %></td>
+                  <td><span class="<% if request.status == "Open"  %> label label-default <% elsif request.status == "Approved" %> label label-success <% else %> label label-danger <% end %>"><%= request.status %></span></td>
+                  <td><%= request.total_amount %></td>
+                  <td><%= request.created_at.strftime("%F" + " at " + "%T") %></td>
+                  <td>
+                    <a href="<%= request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-search"></span></a>
+                    <% unless ( request.approved? | request.rejected? ) %>
+                        <a href="<%= edit_request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-pencil"></span></a>
+                        <%= link_to "", request_path(request), method: "delete", class: "fa fa-times btn btn-danger btn-rounded btn-condensed btn-sm", :confirm => "are you sure you want to delete request?"  %>
+                    <% end %>
+                    <a href="<%= copy_request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-copy"></span></a>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+          <div class="pull-right">
+            <%= paginate @openrequest unless @query %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <br />
 <div class="row">
   <div class="col-md-3">
