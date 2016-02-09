@@ -115,6 +115,12 @@
 
   </div>
   <!-- END INVOICE -->
+  <% if @request.open? %>
+      <div class="row">
+        <%= render 'approve' %>
+        <%= render 'reject' %>
+      </div>
+  <% end %>
 
 </div>
 

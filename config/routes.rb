@@ -49,6 +49,8 @@ PurchaseTrakker::Application.routes.draw do
   resources :requests do
     member do
       get 'copy'
+      post :approve
+      post :reject
     end
 
   end

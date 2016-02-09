@@ -108,6 +108,7 @@ ActiveAdmin.setup do |config|
   #   config.namespace :without_comments do |without_comments|
   #     without_comments.allow_comments = false
   #   end
+  config.show_comments_in_menu = false
 
 
   # == Batch Actions
@@ -220,4 +221,3 @@ ActiveAdmin::ResourceController.class_eval do
   end
 
 end
-

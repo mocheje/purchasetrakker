@@ -1,0 +1,9 @@
+<button class="a_button bbtn" id="sim_request_rejection_reason">
+  Reject
+</button>
+<span class="reject_request">
+  <%= form_tag reject_request_path(@request), :id => "reject_request", :class => "rejection" do %>
+    <%= text_area_tag 'reason', nil, placeholder: 'Enter Rejection Reason ... ' %>
+      <%=  submit_tag "Reject", :class => 'bbtn reject' %>
+  <%  end %>
+</span>

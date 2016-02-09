@@ -61,5 +61,23 @@ class RequestsController < InheritedResources::Base
       @issued = @request.issues
     end
   end
+
+  def approve
+    @request = Request.find(params[:id])
+    if @request.approve
+      redirect_to :back, notice: "Approved Succesfully"
+    else
+      reidrect_to :back, alert: "Unsuccessful Request Approval"
+    end
+  end
+
+  def reject
+    @request = Request.find(params[:id])
+    if @request.reject(params[:reason])
+      redirect_to :back, alert: "Request Rejected"
+    else
+      redirect_to :back, alert: "Rejection not possible"
+    end
+  end
 end
 

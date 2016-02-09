@@ -35,6 +35,7 @@ ActiveAdmin.register Request, :namespace => :admin do
       f.input  :total_amount, :input_html => { :disabled => true }
       f.input  :department
       f.input     :reason
+      f.input :approver_id, :label => "Approver (leave blank to use default)", :as => :select, :collection => User.all.map{|u| ["#{u.last_name} #{u.first_name}", u.id]}
     end
     f.inputs "Request Items" do
       f.has_many :request_items, allow_destroy: true, new_record: true do |a|
@@ -104,6 +105,9 @@ ActiveAdmin.register Request, :namespace => :admin do
         else
           status_tag(request.status, class: 'reject' )
         end
+      }
+      row("approver") {
+        link_to(User.find(request.approver_id).first_name, admin_user_path(request.approver_id)) if request.approver_id
       }
       row :date_approved
     end

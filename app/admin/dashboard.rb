@@ -1,7 +1,7 @@
 ActiveAdmin.register_page "Dashboard", :namespace => :admin do
 
   #controller.skip_authorization_check
-  menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }, url: '/'
+  menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }, url: '/admin'
 
   content :title => "Administrative Work List" do
     div :class => "blank_slate_container", :id => "dashboard_default_message" do
