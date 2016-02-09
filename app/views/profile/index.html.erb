@@ -1,9 +1,7 @@
 <!-- START BREADCRUMB -->
 <ul class="breadcrumb push-down-0">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Pages</a></li>
-  <li><a href="#">Mailbox</a></li>
-  <li class="active">Message</li>
+  <li><a href="<%= root_url%>">Home</a></li>
+  <li><a href="#">Profile</a></li>
 </ul>
 <!-- END BREADCRUMB -->
 <!-- PAGE CONTENT WRAPPER -->
@@ -132,9 +130,11 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 col-xs-5 control-label">Groups</label>
+            <label class="col-md-4 col-xs-5 control-label">Roles</label>
             <div class="col-md-8 col-xs-7">
-              administrators, managers, team-leaders, developers
+              <% @profile.roles.each do |role|%>
+                <%= role.name %>
+              <% end %>
             </div>
           </div>
           <div class="form-group">
@@ -151,7 +151,7 @@
         <div class="panel-body">
           <h3><span class="fa fa-cog"></span> Settings</h3>
           <p>
-            Sample of settings block
+            Turn On/Off Features
           </p>
         </div>
         <div class="panel-body form-horizontal form-group-separated">

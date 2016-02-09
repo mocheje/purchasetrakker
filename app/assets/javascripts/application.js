@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require requests
 //= require bootstrap.min
+//= require bootstrap-tour.min
 //= require bootstrap-colorpicker
 //= require bootstrap-datepicker
 //= require bootstrap-file-input
@@ -30,6 +31,7 @@
 //= require morris.min
 //= require raphael-min
 //= require jquery.printElement.min
+
 
 
 

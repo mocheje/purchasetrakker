@@ -3,7 +3,6 @@
   <li><a href="#">Home</a></li>
 </ul>
 <!-- END BREADCRUMB -->
-
 <div class="spacer">&nbsp;</div>
 <a href="<%= conversations_path %>">
 <div class="col-md-3">
@@ -21,6 +20,36 @@
 
 </div>
 </a>
+
+<div class="col-md-3" id="timewidget">
+
+  <div class="widget widget-danger widget-padding-sm">
+    <div class="widget-big-int plugin-clock">00:00</div>
+    <div class="widget-subtitle plugin-date">Loading...</div>
+    <div class="widget-controls">
+      <a href="#" class="widget-control-right"><span class="fa fa-times"></span></a>
+    </div>
+    <div class="widget-buttons widget-c3">
+      <div class="col">
+        <a href="#"><span class="fa fa-clock-o"></span></a>
+      </div>
+      <div class="col">
+        <a href="#"><span class="fa fa-bell"></span></a>
+      </div>
+      <div class="col">
+        <a href="#"><span class="fa fa-calendar"></span></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-4">
+    <div class="panel panel-default panel-body">
+    <p>Try out the tour feature to gain insight on how to navigate this page by clicking on the tour button.</p>
+    <button class="btn btn-danger start-tour push-down-10">Start Tour</button>
+  </div>
+</div>
+
 
 <div class="page-content-wrap">
 
@@ -158,4 +187,42 @@
         });
 
     }();
+</script>
+<script>
+    $(function(){
+        var tour = new Tour({
+            debug: true,
+            storage: false,
+            steps: [
+                {
+                    element: "#tour-sidebar",
+                    title: "Sidebar Navigation",
+                    content: "It's very powerful tool in template. It has many options and features.",
+                    placement: "right"
+                },
+                {
+                    element: "#timewidget",
+                    title: "Time Widget",
+                    content: "This is always available in the index page and it allows you to see the current time on the fly ",
+                    placement: "right"
+                },
+                {
+                    element: "#tour-content-1",
+                    title: "Content Example",
+                    content: "Sample of left direction of popover block",
+                    placement: "left"
+                },
+                {
+                    element: "#tour-content-2",
+                    title: "Content Example 2",
+                    content: "Sample of top direction of popover block",
+                    placement: "top"
+                }
+            ]});
+        //tour1.init();
+        $(".start-tour").on("click",function(){
+            tour.start();
+        });
+    });
+
 </script>

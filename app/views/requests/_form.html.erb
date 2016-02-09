@@ -32,6 +32,13 @@
                 <%= f.text_area :reason, rows: 5, class: "form-control", placeholder: "Enter Reason behind this request if any" %>
               </div>
             </div>
+
+            <div class="form-group">
+              <div class="col-md-10">
+                <%= f.collection_select :approver_id, User.where(:department_id => current_user.department_id), :id, :first_name, class: "form-control", :prompt => 'Select Approver' %>
+              </div>
+            </div>
+
             <%= f.fields_for :request_items do |r| %>
                 <%= render 'request_item_fields', f: r %>
             <% end %>
