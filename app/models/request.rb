@@ -12,7 +12,7 @@ class Request < ActiveRecord::Base
   scope :rejected, where(:status => "Rejected")
   scope :openrequest, where(:status => "Open" )
   before_create :set_number
-  validates :title, :presence => true
+  validates :title, :request_items, :presence => true
   validate :requester_not_approver
 
 

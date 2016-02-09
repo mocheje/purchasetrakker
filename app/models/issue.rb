@@ -7,6 +7,7 @@ class Issue < ActiveRecord::Base
   accepts_nested_attributes_for :issue_items, allow_destroy: true
 
   validate :req_status
+  validates :issue_items, presence: true
 
   def req_status
     @request = Request.find(request_id)

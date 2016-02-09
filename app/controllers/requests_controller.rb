@@ -69,7 +69,7 @@ class RequestsController < InheritedResources::Base
       if @request.approve
         redirect_to :back, notice: "Approved Succesfully"
       else
-        reidrect_to :back, alert: "Unsuccessful Request Approval"
+        redirect_to :back, alert: "Unsuccessful Request Approval"
       end
     else
       redirect_to :back, alert: "Only the default approver, the admin or the selected approver can approve this request"
