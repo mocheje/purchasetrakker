@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :notification, :orders
   #check_authorization :unless => :devise_controller?
       rescue_from ActiveRecord::RecordNotFound do
     flash[:warning] = 'Resource not found.'
@@ -26,5 +26,14 @@ class ApplicationController < ActionController::Base
 
   def active_admin_controller?
     self.is_a? ActiveAdmin::BaseController
+  end
+
+  def notification
+    @notification = current_user.mailbox.inbox(unread: true)
+  end
+
+  def orders
+    puts current_user
+    @unapproved_orders = Request.where(:approver_id => current_user.id,  :status => "Open")
   end
 end

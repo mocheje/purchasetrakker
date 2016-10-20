@@ -21,6 +21,10 @@ class ConversationsController < ApplicationController
 
   end
 
+  def show
+    @conversation.mark_as_read(current_user)
+  end
+
   def empty_trash
     @mailbox.trash.each do |conversation|
       conversation.receipts_for(current_user).update_all(deleted: true)
