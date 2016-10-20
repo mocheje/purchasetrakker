@@ -49,5 +49,5 @@ $(function(){
             return false
         }
         console.log("you pressed the following key %s", evnt.keyCode);
-    })
+    });
 });

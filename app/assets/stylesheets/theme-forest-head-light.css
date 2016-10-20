@@ -994,11 +994,11 @@ body.page-container-boxed.wall_10 {
 .x-navigation > li.xn-logo > a:first-child {
   font-size: 0px;
   text-indent: -9999px;
-  background: url("../img/logo.png") top center no-repeat #7d9748;
+  background: url("logo.png") top center no-repeat #7d9748;
   padding: 0px;
   border-bottom: 0px;
   color: #FFF;
-  height: 50px;
+  height: 67px;
 }
 .x-navigation > li.xn-logo > a:first-child:hover {
   background-color: #779045;

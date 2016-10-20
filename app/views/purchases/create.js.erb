@@ -1,0 +1,4 @@
+<% if @request %>
+$('#newRequest').html("<%= j render "purchases/new_purchase" %>");
+$('#requestSearch').submit();
+<% end %>

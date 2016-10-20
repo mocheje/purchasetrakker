@@ -7,10 +7,13 @@ class Purchase < ActiveRecord::Base
   belongs_to :user
 
   scope :recent, order('id DESC')
-
+  before_save :set_missing_params
   validates :quantity_received, numericality: true
-  validates :request_id, :item_id, :station_id, presence: true
-  validate :req_status
+  validates :request_id, :item_id, presence: true
+  # validate :req_status
+  validate :item_count
+
+
 
 
 
@@ -35,6 +38,33 @@ class Purchase < ActiveRecord::Base
       errors.add(:request_id, "Goods receipt can only be processed for Approved request")
     end
   end
+  def item_count
+    #add validation logic for item count
+    @request = Request.find(request_id)
+    puts @request.inspect
+    @item = @request.request_items.map{|item|
+      return item.item_id == item_id
+    }
+    puts @item.inspect
+    @purchases = Purchase.where(:request_id => request_id, :item_id => item_id)
+    puts @purchases.inspect
+    if @purchases
+      @item_counted = 0
+      @purchases.each do |purchase|
+        @item_counted += purchase.quantity
+        puts @item_counted        
+      end
+      if (@item_counted + quantity_received) > @item.quantity
+        errors.add(:quantity_received, "You cannot receive more than what was requested.. Available slot is #{@item.quantity - @item_counted}")
+      end
 
+    end
+  end
 
+  def set_missing_params
+    @request = Request.find(request_id)
+    puts "this is the request id #{request_id}"
+    self.user_id  = @request.user_id
+    self.station_id = @request.department.station_id
+  end
 end

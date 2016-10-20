@@ -46,7 +46,7 @@ PurchaseTrakker::Application.routes.draw do
   resources :request_items
 
 
-  resources :requests do
+  resources :requests, :except => [:delete]do
     member do
       get 'copy'
       post :approve

@@ -89,5 +89,9 @@ class RequestsController < InheritedResources::Base
       redirect_to :back, alert: "Only the default approver, the admin or the selected approver can reject this request"
     end
   end
+
+  def delete
+    redirect_to :back, alert: "Cannot Delete request"
+  end
 end
 

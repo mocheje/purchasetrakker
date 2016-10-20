@@ -1,41 +1,39 @@
-<%= form_for(@purchase) do |f| %>
-  <% if @purchase.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+<% @items_n = @items ||RequestItem.all %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h3>Receive Individual Goods Item</h3>
+    <%= form_for(@purchase, :html=>{id: "validate", role: "form"}) do |f| %>
+        <% if @purchase.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
 
-      <ul>
-      <% @purchase.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+              <ul>
+                <% @purchase.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <%= f.hidden_field :request_id, :value => @id if @id %>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Receive Item:</label>
+          <div class="col-md-9">
+            <%= f.select(:item_id, @items_n.map{|s| [s.item.name, s.item.id]}, class: "form-control") %>
+            <span class="help-block">Select Item received</span>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :item_id %><br />
-    <%= f.number_field :item_id %>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Quantity Received:</label>
+          <div class="col-md-9">
+            <%= f.number_field :quantity_received, class: "form-control" %>
+            <span class="help-block">Required, only numbers allowed</span>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit :class=>"btn btn-primary pull-right" %>
+        </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :department %><br />
-    <%= f.text_field :department %>
-  </div>
-    <div class="field">
-      <%= f.label :user_id %><br />
-      <%= f.number_field :user_id %>
-    </div>
-    <div class="field">
-      <%= f.label :request_id %><br />
-      <%= f.number_field :request_id %>
-    </div>
-    <div class="field">
-      <%= f.label :quantity_received %><br />
-      <%= f.number_field :quantity_received %>
-    </div>
-    <div class="field">
-      <%= f.label :station_id %><br />
-      <%= f.number_field :station_id %>
-    </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+<%= @items.inspect %>

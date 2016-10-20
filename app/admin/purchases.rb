@@ -36,7 +36,7 @@ ActiveAdmin.register Purchase do
   end
   before_create do |purchase|
     @request = Request.find(purchase.request_id)
-    purchase.user  = @request.user
+    purchase.user  = current_user
     purchase.station = @request.department.station
   end
 end
