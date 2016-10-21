@@ -1,6 +1,6 @@
 ActiveAdmin.register Department do
   config.batch_actions = true
-  config.per_page = 10
+  config.per_page = 15
   batch_action :destroy, false
 
   index do

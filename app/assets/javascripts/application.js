@@ -20,6 +20,7 @@
 //= require bootstrap-file-input
 //= require bootstrap-select
 //= require bootstrap-timepicker.min
+//= require semantic
 
 //= require jquery.sparkline.min
 //= require jquery.tagsinput.min
@@ -42,6 +43,7 @@
 
 
 
+
 $(function(){
     $("#requestSearch form input[type='text']").on("keydown", function(){
         if(evnt.keyCode === 13) {
@@ -50,4 +52,6 @@ $(function(){
         }
         console.log("you pressed the following key %s", evnt.keyCode);
     });
+    $('.dropdown')
+        .dropdown()
 });

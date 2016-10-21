@@ -42,16 +42,17 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">To:</label>
                 <div class="col-md-9">
-                  <%= select_tag 'recipients', recipients_options, multiple: true, class: 'form-control' %>
+                  <%= select_tag 'recipients', recipients_options, multiple: true, class: 'form-control ui fluid multiple search selection dropdown' %>
                 </div>
                 <div class="col-md-1">
                   <button class="btn btn-link toggle" data-toggle="mail-cc">Cc</button>
                 </div>
               </div>
+
               <div class="form-group hidden" id="mail-cc">
                 <label class="col-md-2 control-label">Cc:</label>
                 <div class="col-md-10">
-                  <input type="text" class="tagsinput" value="" data-placeholder="add email"/>
+                  <input type="text" class="tagsinput" value="" data-placeholder="add email" id="cc"/>
                 </div>
               </div>
               <div class="form-group">
@@ -62,7 +63,7 @@
               </div>
               <div class="form-group">
                 <div class="col-md-12">
-                  <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
+                  <%= text_area_tag 'message[body]', nil, rows: 6, cols: 3, class: 'form-control', required: true %>
                 </div>
               </div>
               <div class="form-group">
@@ -80,6 +81,8 @@
     </div>
     <!-- END CONTENT FRAME -->
 
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
 
 
 

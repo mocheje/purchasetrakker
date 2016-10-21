@@ -1,6 +1,6 @@
 ActiveAdmin.register Request, :namespace => :admin do
   # controller.authorize_resource
-  config.per_page = 10
+  config.per_page = 15
   menu :priority => 3
   scope(:open){|request| request.openrequest  }
   scope :approved

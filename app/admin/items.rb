@@ -1,6 +1,6 @@
 ActiveAdmin.register Item do
   menu :priority => 4
-  config.per_page = 10
+  config.per_page = 15
   menu :label => "Items"
   show do |item|
     attributes_table do

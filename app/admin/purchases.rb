@@ -1,6 +1,6 @@
 ActiveAdmin.register Purchase do
   menu :label => "Goods Receipt"
-  config.per_page = 10
+  config.per_page = 15
   @request_items = []
   config.clear_action_items!
   action_item :only => :index do

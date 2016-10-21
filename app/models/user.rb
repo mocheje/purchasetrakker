@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :roles, allow_destroy: true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :department_id, :position, :photo, :role_ids
+  attr_accessible :address, :bio, :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :department_id, :position, :photo, :role_ids, :phonenumber, :date_of_birth
   # attr_accessible :title, :body
-  validates :department_id, :photo, :position, :presence => true
+  validates :department_id, :position, :presence => true
   has_attached_file :photo, :styles => { :medium => "300x300", :thumb => "100x100" }
   validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
