@@ -22,6 +22,7 @@
 //= require bootstrap-select
 //= require bootstrap-timepicker.min
 //= require semantic
+//= require sweetalert.min
 
 //= require jquery.sparkline.min
 //= require jquery.tagsinput.min
@@ -33,16 +34,6 @@
 //= require morris.min
 //= require raphael-min
 //= require jquery.printElement.min
-
-
-
-
-
-
-
-
-
-
 
 
 $(function(){
@@ -57,4 +48,37 @@ $(function(){
         .dropdown()
     /* Activating Best In Place */
     $(".best_in_place").best_in_place();
+    $("[data-behavior='delete']").click(function(e){
+        var self = this;
+        e.preventDefault();
+        console.log('trying to delete');
+        swal({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this imaginary file!',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel',
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function(confirmed){
+            if(confirmed){
+                $.ajax({
+                    url: $(self).attr("href"),
+                    dataType: "JSON",
+                    method: "DELETE",
+                    success: swal('Deleted!', 'Your imaginary file has been deleted.', 'success')
+                });
+                //reload page
+                location.reload();
+            } else {
+                swal('Cancelled', 'Not deleted:)', 'error');
+                return;
+            }
+        })
+
+    });
+
 });
+

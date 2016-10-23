@@ -51,7 +51,7 @@
                     <a href="<%= request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-search"></span></a>
                     <% unless ( request.approved? | request.rejected? ) %>
                         <a href="<%= edit_request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-pencil"></span></a>
-                        <%= link_to "", request_path(request), method: "delete", class: "fa fa-times btn btn-danger btn-rounded btn-condensed btn-sm", :confirm => "are you sure you want to delete request?"  %>
+                        <%= link_to "", request_path(request), class: "fa fa-times btn btn-danger btn-rounded btn-condensed btn-sm", data: { behavior: 'delete' }  %>
                     <% end %>
                     <a href="<%= copy_request_path(request) %>" class="btn btn-default btn-rounded btn-condensed btn-sm"><span class="fa fa-copy"></span></a>
                   </td>

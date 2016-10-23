@@ -27,7 +27,7 @@
         <% if @conversations.empty? %>
             <h5>Trash is Empty </h5>
         <% else %>
-            <%= link_to 'Empty trash', empty_trash_conversation_path(@conversations), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%= link_to 'Empty trash', empty_trash_conversation_path(@conversations), class: 'btn btn-danger', data: { behavior: 'delete' } %>
         <% end %>
     <% end %>
     <ul class="list-group">
