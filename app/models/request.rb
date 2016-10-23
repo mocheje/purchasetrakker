@@ -19,6 +19,7 @@ class Request < ActiveRecord::Base
   after_save :update_amount
   after_update :update_amount
 
+
   def approved?
     return true if status == "Approved"
     return false
@@ -78,4 +79,5 @@ class Request < ActiveRecord::Base
       errors.add(:approver_id, "The Requester cannot be the Approver. Leave blank to use the default department approver")
     end
   end
+
 end

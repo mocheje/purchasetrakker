@@ -29,7 +29,9 @@ PurchaseTrakker::Application.routes.draw do
   resources :stations
 
 
-  devise_for :users
+  devise_for :users, :path => 'u'
+
+  resources :users
 
   get "welcome/index"
 

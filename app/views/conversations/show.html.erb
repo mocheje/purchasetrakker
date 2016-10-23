@@ -44,7 +44,7 @@
           </div>
           <div class="panel-body">
             <small class="pull-right text-muted"><span class="fa fa-clock-o"></span> <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %> </small>
-            <p> <%= message.body %> </p>
+            <p> <%= message.body.html_safe %> </p>
 
           </div>
       <% end %>
@@ -53,10 +53,12 @@
       <label>Quick Reply</label>
       <%= form_tag reply_conversation_path(@conversation), method: :post do %>
           <div class="form-group">
-            <%= text_area_tag 'body', nil, cols: 3, class: 'form-control summernote_lite', placeholder: 'Type Your Reply...', required: true %>
+            <%= text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type Your Reply...' %>
           </div>
-          <button type="submit" name="submit1" value="submit1" onclick="this.value='submit1' " class="btn btn-success pull-right"> <span class="fa fa-mail-reply"></span> Post Reply </button>
+          <button type="submit" name="submit1" value="submit1" class="btn btn-success pull-right"> <span class="fa fa-mail-reply"></span> Post Reply </button>
       <% end %>
     </div>
   </div>
 </div>
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>

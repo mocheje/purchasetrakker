@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery.min
+//= require best_in_place
 //= require jquery_ujs
 //= require requests
 //= require bootstrap.min
@@ -26,9 +27,9 @@
 //= require jquery.tagsinput.min
 //= require jquery.mCustomScrollbar.min
 //= require jquery-ui.min
+//= require best_in_place.jquery-ui
 //= require plugins
 //= require actions
-//= require summernote
 //= require morris.min
 //= require raphael-min
 //= require jquery.printElement.min
@@ -54,4 +55,6 @@ $(function(){
     });
     $('.dropdown')
         .dropdown()
+    /* Activating Best In Place */
+    $(".best_in_place").best_in_place();
 });

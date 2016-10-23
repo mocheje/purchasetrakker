@@ -122,7 +122,7 @@
               </div>
               <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
                 <% @notification.each do |x| %>
-                    <a href="#" class="list-group-item">
+                    <a href="<%= conversation_path(x) %>" class="list-group-item">
                       <div class="list-group-status status-online"></div>
                       <%= image_tag x.receipts_for(current_user)[0].message.sender.photo.url(:thumb), class: 'pull-left', alt: "#{x.receipts_for(current_user)[0].message.sender.first_name}"%>
                       <span class="contacts-title"><%= x.receipts_for(current_user)[0].message.sender.email %></span>

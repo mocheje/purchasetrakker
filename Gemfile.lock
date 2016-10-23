@@ -45,6 +45,9 @@ GEM
       activesupport (>= 3.0.0)
     arel (3.0.3)
     bcrypt (3.1.10)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     bourbon (3.2.4)
       sass (~> 3.2)
       thor
@@ -181,6 +184,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activeadmin
+  best_in_place (~> 3.0.1)
   cancancan
   coffee-rails (~> 3.2.1)
   devise

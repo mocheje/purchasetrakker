@@ -50,8 +50,6 @@ class Ability
       can :manage, Issue
     end
 
-    can :manage, User do |user|
-      user.try(:user) == user
-    end
+    can :manage, User, :id => user.id
   end
 end

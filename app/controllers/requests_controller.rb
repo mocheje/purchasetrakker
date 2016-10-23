@@ -28,8 +28,12 @@ class RequestsController < InheritedResources::Base
   end
   def create
     @request = current_user.requests.new(params[:request])
-    params.inspect
     if @request.save
+      recipients = User.find(@request.approver_id)
+      current_user.send_message(recipients, "Please Approve the request below
+      \n Title #{@request.title}. \n to approve click on the link below
+      <a href='#{root_url + 'requests'}'>Click to Open the Request</a> Regards.
+      ", @request.title)
       redirect_to @request, notice: "Successfully sent Request."
     else
       render :new
@@ -93,5 +97,6 @@ class RequestsController < InheritedResources::Base
   def delete
     redirect_to :back, alert: "Cannot Delete request"
   end
+
 end
 
