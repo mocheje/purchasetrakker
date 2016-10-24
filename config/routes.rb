@@ -1,4 +1,5 @@
 PurchaseTrakker::Application.routes.draw do
+  default_url_options :host => ENV["APP_HOST"]
   resources :issues
 
 
