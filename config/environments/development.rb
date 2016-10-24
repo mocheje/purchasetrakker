@@ -35,4 +35,6 @@ PurchaseTrakker::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  Rails.application.routes.default_url_options[:host] = ENV["APP_HOST"]
+
 end
