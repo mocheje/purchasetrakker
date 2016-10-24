@@ -36,4 +36,5 @@ class ApplicationController < ActionController::Base
     puts current_user
     @unapproved_orders = Request.where(:approver_id => current_user.id,  :status => "Open") if current_user
   end
+
 end

@@ -12,7 +12,7 @@ class RequestsController < InheritedResources::Base
     @rejected = current_user.requests.rejected.count
     @open = current_user.requests.openrequest.count
     @unread = current_user.mailbox.inbox(:unread => true).count(:id, :distinct => true)
-    @openrequest = Request.recent.openrequest.where(:approver_id == current_user).page(params[:page]).per(15)
+    @openrequest = Request.recent.openrequest.where(:approver_id => current_user).page(params[:page]).per(15)
   end
 
   def show
