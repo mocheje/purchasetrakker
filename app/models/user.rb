@@ -24,9 +24,6 @@ class User < ActiveRecord::Base
   def mailboxer_email(object)
    return email
   end
-  def name
-    return first_name || "Default"
-  end
   def role?(role)
     return !!self.roles.find_by_name(role.to_s.camelize)
   end
