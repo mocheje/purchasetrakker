@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
 
   def mailboxer_email(object)
-   return email
+   email
   end
   def role?(role)
     return !!self.roles.find_by_name(role.to_s.camelize)
